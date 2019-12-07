@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
-import { Button } from 'semantic-ui-react';
+
+//import Navbar and routes
+import Navbar from './components/Navbar'
+import Routes from './routes'
 
 function App() {
   return (
     <div className="App">
+<<<<<<< HEAD
       <header className="App-header">
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -19,6 +23,10 @@ function App() {
         </a>
         <Button>Test here</Button>
       </header>
+=======
+      <Navbar />
+      <Routes />
+>>>>>>> bd528c3518ca470dafd9cb23ede0b2cf41864b5d
     </div>
   );
 }
