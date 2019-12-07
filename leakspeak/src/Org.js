@@ -1,14 +1,13 @@
 import React from "react";
-import { Button, Header, Modal } from "semantic-ui-react";
+import Mint from "./Mint";
+import Issue from "./Issue";
 
 class Org extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       orgName: "",
-      tokens: 0,
-      mint: false,
-      issue: false
+      tokens: 0
     };
   }
 
@@ -20,44 +19,32 @@ class Org extends React.Component {
   };
 
   componentDidMount = () => {
-    const { orgName, tokens } = this.getName();
+    const { orgName, tokens } = this.getData();
     this.setState({ orgName, tokens });
   };
 
-  handleClose = () => {
-    this.setState({ mint: false, issue: false });
+  mintTokens = n => {
+    let { tokens } = this.state;
+    n = parseInt(n)
+    this.setState({ tokens: tokens + n });
   };
 
-  mintToken = () => {
-    this.setState({ mint: true });
-  };
-
-  isssueToken = () => {
-    this.setState({ issue: true });
+  issueToken = (adress) => {
+    let { tokens } = this.state;
+    this.setState({ tokens: tokens - 1 });
   };
 
   render() {
-    const { orgName, tokens, mint, issue } = this.state;
-    const { handleClose, mintToken, isssueToken } = this;
+    const { orgName, tokens } = this.state;
     return (
       <div>
         <h1>{orgName}</h1>
         <h2>{tokens}</h2>
-        <Modal trigger={<Button>Mint Tokens</Button>}>
-          <Modal.Header>How Many Tokens?</Modal.Header>
-          <Modal.Content>
-                <input />
-                <Button>Confirm</Button>
-          </Modal.Content>
-        </Modal>
-        <Modal trigger={<Button>Issue Token</Button>}>
-          <Modal.Header>Address To Issue</Modal.Header>
-          <Modal.Content>
-            <input />
-            <Button>Confirm</Button>
-          </Modal.Content>
-        </Modal>
+        <Mint minter={this.mintTokens} />
+        <Issue issuer={this.issueToken} />
       </div>
     );
   }
 }
+
+export default Org;

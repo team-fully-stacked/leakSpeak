@@ -1,13 +1,16 @@
 import React from 'react';
 import { DrizzleContext } from 'drizzle-react';
-import JournalistView from './JournalistView';
 import { Loader } from 'semantic-ui-react';
+
+import './App.css';
+
+import Navbar from './components/Navbar';
+import Routes from './routes';
 
 export default () => (
   <DrizzleContext.Consumer>
     {drizzleContext => {
       const { drizzle, drizzleState, initialized } = drizzleContext;
-
       if (!initialized) {
         return (
           <div
@@ -22,7 +25,12 @@ export default () => (
           </div>
         );
       }
-      return <JournalistView drizzle={drizzle} drizzleState={drizzleState} />;
+      return (
+        <div>
+          <Navbar />
+          <Routes drizzle={drizzle} drizzleState={drizzleState} />
+        </div>
+      );
     }}
   </DrizzleContext.Consumer>
 );

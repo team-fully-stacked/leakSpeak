@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import { Drizzle } from 'drizzle';
 import { DrizzleContext } from 'drizzle-react';
@@ -15,7 +16,10 @@ const drizzle = new Drizzle(options, store);
 
 ReactDOM.render(
   <DrizzleContext.Provider drizzle={drizzle}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+    ,
   </DrizzleContext.Provider>,
 
   document.getElementById('root')
