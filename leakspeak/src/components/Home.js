@@ -1,10 +1,13 @@
 import React from 'react'
+import { Button } from 'semantic-ui-react';
+
 
 class Home extends React.Component {
     render() {
         return (
             <div>
-                Test
+
+        <Button>Test here</Button>
             </div>
         )
     }
