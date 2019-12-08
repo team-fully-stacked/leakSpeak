@@ -34,7 +34,8 @@ class JournalistView extends React.Component {
   //0x8d165F7bDB9AaFD6Fd6DD2Aa6D7E2a9b390fC1B4
 
   componentDidMount = async () => {
-    this.setState(await this.getData());
+    const data = await this.getData()
+    this.setState(data);
   };
 
   handleInputChange = event => {
