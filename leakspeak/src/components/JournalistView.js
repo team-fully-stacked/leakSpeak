@@ -22,10 +22,7 @@ class JournalistView extends React.Component {
     const tokenSymbol = await this.props.drizzle.contracts.TokenMinter.methods
       .symbol()
       .call();
-    const quorum = await this.props.drizzle.contracts.ContractCreator.methods
-      .quorum()
-      .call();
-    console.log(">>>>>: JournalistView -> getData -> quorum", quorum);
+    await this.props.drizzle.contracts.ContractCreator.methods.quorum().call();
 
     return {
       userAddress,
