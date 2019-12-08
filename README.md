@@ -21,6 +21,14 @@ use of blockchain technology to provide a streamline process for global issues t
 * React Semantic UI
 * HTML/CSS
 * Ethereum
+* Ganache
+* Drizzle
+* IPFS
+* Truffle
+* Web3
+* MetaMask
+* Node.js
+* Solidity
 
 ## :writing_hand: Authors
 
