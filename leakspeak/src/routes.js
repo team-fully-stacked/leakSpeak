@@ -33,7 +33,7 @@ class Routes extends React.Component {
           path="/contracts"
           render={props => {
             return (
-              <Home
+              <ManageContracts
                 drizzle={drizzle}
                 drizzleState={drizzleState}
                 props={props}
@@ -59,7 +59,7 @@ class Routes extends React.Component {
           path="/journalist"
           render={props => {
             return (
-              <ManageContracts
+              <JournalistView
                 drizzle={drizzle}
                 drizzleState={drizzleState}
                 props={props}

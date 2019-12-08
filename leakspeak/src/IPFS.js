@@ -1,6 +1,6 @@
 import ipfsClient from 'ipfs-http-client';
 import React from 'react';
-import { TextArea, Form, Item, Modal, Button, Icon, Label, Grid, Image, Divider, Header, Input} from "semantic-ui-react";
+import { TextArea, Form, Item, Modal, Button, Icon, Label, Grid, Image, Divider, Header, Input, Card, Message} from "semantic-ui-react";
 
 const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: '5001', protocol: 'https' })
 
@@ -131,33 +131,67 @@ class IPFS extends React.Component {
                 </Divider>
                 </div>
                 <div>
+                {(!this.state.isAlive) ?
+                <div>
                 <Button basic color={color} horizontal size={'large'}>
                     {message}
-                </Button>
-
-                <Label size={'large'} > <Icon name='users'/> {`${this.state.currentApprovals} Approval(s)`}</Label>
-
+                </Button> 
                 <div style={{
                     margin: '10px'
                 }}>
                     <Input onChange={(e) => this.onChange(e)}></Input>
-                    <Button color={'orange'} onClick={() => this.addVoter()}>Add Voter</Button>
-
+                    <Button color={'orange'} onClick={() => this.addVoter()}> <Icon name="add" />Add Voter</Button>
+                    <Button color={'green'} onClick={() => this.goLive()}><Icon name="rocket" /> Go Live</Button>
                 </div>
+                </div> : <div>
+                
+                <Card>
+                        <Card.Header>
+                          <Message
+                            success={this.state.isAlive}
+                            warning={this.state.isAlive && !this.state.currentApprovals}
+                            negative={!this.state.isAlive}
+                            header={`Status:
+                              ${
+                                this.state.isAlive
+                                  ? this.state.currentApprovals
+                                    ? this.state.currentApprovals
+                                      ? 'Quorum Met'
+                                      : 'Awaiting Votes'
+                                    : 'Awaiting Votes'
+                                  : 'Not Live'
+                              }`}
+                          ></Message>
+                        </Card.Header>
+                        <Card.Content>
+                          <div
+                            style={{
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                            }}
+                          >
+                           
+                            
+                            {(!this.state.currentApprovals) ? <div>
+                                <Button onClick={() => this.addApprovall()}>Add Approval</Button>
+                            </div> : 
+                            <Label>
+                            <Icon link name="thumbs up" color="black" />
+                            Verified
+                          </Label>
+                        }
+                            {this.state.currentApprovals} / {1}
+                          </div>
+                        </Card.Content>
+                      </Card> 
+                      </div>
+                    }
                 <div style={{
                     margin: '10px'
                 }}>
-                    {(!this.state.isAlive) ? <Button color={'green'} onClick={() => this.goLive()}>Activate Contract</Button> : ''}
-                    <Button color={'orange'} onClick={() => this.addApprovall()}>Add Approval</Button>
-                    <Button color={'orange'} >Withdraw</Button>
+                    
                 </div>
                 </div>
-
-                {/* <div>
-                    <input type="file" onChange={(event) => this.onUpload(event.target.files[0])} />
-                    <p>{this.state.message}</p>
-                    {hashResult}
-                </div> */}
             </div >
         )
     }
