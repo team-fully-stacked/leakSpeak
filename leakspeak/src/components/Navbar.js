@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Image } from 'semantic-ui-react';
+import { Button, Image, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,39 +11,43 @@ const Navbar = props => {
   return (
     <div
       style={{
-        justifyContent: 'center',
-        alignItems: 'center',
-        display: 'flex',
-        flexDirection: 'column',
+        justifyContent: "center",
+        alignItems: "center",
+        display: "flex",
+        flexDirection: "column"
       }}
     >
       <ToastContainer />
-
-      <div style={{ height: '100px' }}>
+      <div style={{ height: "100px" }}>
         <img src={logo} />
       </div>
       <div
         className="navbar"
         style={{
-          paddingTop: '26px',
-          justifyContent: 'center',
-          alignItems: 'center',
-          display: 'flex',
+          paddingTop: "26px",
+          justifyContent: "center",
+          alignItems: "center",
+          display: "flex"
         }}
       >
-        <Link to="/journalist">
-          <Button>Journalist Page</Button>
-        </Link>
         <Link to="/organization">
-          <Button>Organization Page</Button>
+          <Button><Icon name="globe" />Organization Page</Button>
         </Link>
         {journalist ? (
-          <Link to="/contracts">
-            <Button>Manage Contracts</Button>
-          </Link>
+          <div>
+            <Link to="/contracts">
+              <Button> <Icon name="setting" />Manage Contracts</Button>
+            </Link>
+            <Link to="/journalist">
+              <Button><Icon name="briefcase" />Journalist Page</Button>
+            </Link>
+          </div>
         ) : (
           <></>
         )}
+        <Link to="/source">
+          <Button><Icon name="users" />Submit Data</Button>
+        </Link>
       </div>
     </div>
   );

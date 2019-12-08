@@ -131,10 +131,10 @@ class ManageContracts extends React.Component {
                             floated="right"
                             onClick={this.goLive}
                           >
-                            Go Live
+                            <Icon name="rocket" />Go Live
                           </Button>
                           <Button color="orange" floated="right">
-                            Add Voter
+                            <Icon name="add" />Add Voter
                           </Button>
                         </div>
                       )}
