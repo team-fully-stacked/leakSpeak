@@ -145,21 +145,8 @@ class ManageContracts extends React.Component {
                           }}
                         />
                       </Item.Extra>
-                      <Button
-                        color="orange"
-                        floated="right"
-                      >
-                        {" "}
-                        Go Live <Icon name="edit" />
-                      </Button>
-                      <Button
-                        color="orange"
-                        floated="right"
-                      >
-                        {" "}
-                        Add Voter <Icon name="edit" />
-                      </Button>
-//                   <IPFS drizzle={this.props.drizzle} drizzleState={this.props.drizzleState} />
+                     
+                   <IPFS drizzle={this.props.drizzle} drizzleState={this.props.drizzleState} />
                       
 
                     </Item.Content>
