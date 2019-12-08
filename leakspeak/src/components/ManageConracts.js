@@ -1,4 +1,5 @@
 import React from "react";
+
 import IPFS from '../IPFS'
 import {
   TextArea,
@@ -11,11 +12,32 @@ import {
 } from "semantic-ui-react";
 import CreateContract from "./CreateContract";
 
-
 class ManageContracts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+//       contracts: [{
+//         header: 'Looking for infromation on car crash',
+//         company: 'BBC',
+//         ammount: '$200',
+//         location: ' New York, NY',
+//         imageUrl: '',
+//         description: 'Last night there was a suspicious car crash etc.. etc.. etc..',
+//         label: ['Image', 'Car Cash', 'Local News'],
+//         live: false,
+//         completed: false,
+//         ipfsHash: ''
+//       }]
+//     };
+//   }
+
+//   render() {
+//     // const contracts = this.state.contracts.filter(contract => {
+//     //   return contract.completed === false;
+//     // });
+//     const contracts = this.state.contracts;
+//     console.log(">>>>>: ManageContracts -> render -> contracts", contracts)
+
       tagEdit: false,
       tagString: "",
       targetTags: 0,
@@ -123,8 +145,23 @@ class ManageContracts extends React.Component {
                           }}
                         />
                       </Item.Extra>
-                  <IPFS drizzle={this.props.drizzle} drizzleState={this.props.drizzleState} />
+                      <Button
+                        color="orange"
+                        floated="right"
+                      >
+                        {" "}
+                        Go Live <Icon name="edit" />
+                      </Button>
+                      <Button
+                        color="orange"
+                        floated="right"
+                      >
+                        {" "}
+                        Add Voter <Icon name="edit" />
+                      </Button>
+//                   <IPFS drizzle={this.props.drizzle} drizzleState={this.props.drizzleState} />
                       
+
                     </Item.Content>
                   </Item>
                 );
