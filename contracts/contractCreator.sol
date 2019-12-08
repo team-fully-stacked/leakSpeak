@@ -1,4 +1,4 @@
-pragma solidity ^0.5.12;
+pragma solidity ^0.5.11;
 
 contract contractCreator {
 
@@ -46,11 +46,11 @@ contract contractCreator {
 
     function addVoter(address address_) public notLive onlyOwner  returns (bool) {
         require(!allowedToVote[address_], 'address already able to vote!');
-        
+
         voters.push(address_);
         allowedToVote[address_] = true;
         votersLength++;
-        
+
         return true;
     }
 
@@ -63,12 +63,12 @@ contract contractCreator {
         require(allowedToVote[msg.sender] == true, 'voter not authorized!');
         require(!voted[msg.sender], 'voter already voted!');
         approvals++; // use safe math later
-        
-        if(approvals >= quorum) { // if quorum reached, 
+
+        if(approvals >= quorum) { // if quorum reached,
             withdraw = true;
             completed = true;
         }
-        
+
         return true;
     }
 
@@ -83,12 +83,12 @@ contract contractCreator {
     // };
 }
 
-// library SafeMath { 
+// library SafeMath {
 //     function sub(uint256 a, uint256 b) internal pure returns (uint256) {
 //       assert(b <= a);
 //       return a - b;
 //     }
-    
+
 //     function add(uint256 a, uint256 b) internal pure returns (uint256) {
 //       uint256 c = a + b;
 //       assert(c >= a);
