@@ -1,24 +1,10 @@
 import React from 'react';
-
-import {
-  Button,
-  Icon,
-  Image,
-  Item,
-  Label,
-  Modal,
-  Header,
-  Divider,
-  TextArea,
-  Form,
-  Input,
-} from 'semantic-ui-react';
-
-import contracts from '../contractData';
-
-
+import { Button, Divider, Form, Header, Icon, Image, Input, Item, Label, Modal, TextArea } from 'semantic-ui-react';
 import './Home.css';
-import UploadImage from './UploadImage';
+
+
+
+
 
 
 class Home extends React.Component {
@@ -243,9 +229,9 @@ class Home extends React.Component {
             <div className="home">
               <div className="all-contracts">
                 <Item.Group divided>
-                  {contracts.map(contract => {
+                  {contracts.map((contract, index) => {
                     return (
-                      <Item>
+                      <Item key={index}>
                         <Item.Image src={contract.imageUrl} />
                         <Item.Content>
                           <Item.Header>{contract.header} </Item.Header>
@@ -322,76 +308,6 @@ class Home extends React.Component {
                                 {' '}
                                 Submit
 
-//           <div className="home">
-//             <div className="all-contracts">
-//               <Item.Group divided>
-//                 {contracts.map((contract, idx) => {
-//                   return (
-//                     <Item key ={idx}>
-//                       <Item.Image src={contract.imageUrl} />
-//                       <Item.Content>
-//                         <Item.Header>{contract.header} </Item.Header>
-//                         <Item.Meta>
-//                           {contract.company} - {contract.location} -{' '}
-//                           {contract.ammount}
-//                         </Item.Meta>
-//                         <Item.Description>
-//                           {contract.description}
-//                         </Item.Description>
-//                         <Item.Extra>
-//                           {contract.label.map((lab,idx) => {
-//                             return <Label key={idx} color="yellow">{lab}</Label>;
-//                           })}
-//                         </Item.Extra>
-//                         <Button
-//                           onClick={() => this.handleModal(contract)}
-//                           color="orange"
-//                           floated="right"
-//                         >
-//                           {' '}
-//                           Provide information .<Icon name="disk" />
-//                         </Button>
-//                         <Modal open={this.state.isModal}>
-//                           <Modal.Header>
-//                             {selectedContract.company} -{' '}
-//                             {selectedContract.location}
-//                           </Modal.Header>
-//                           <Modal.Content image>
-//                             <Image
-//                               wrapped
-//                               size="medium"
-//                               src={selectedContract.imageUrl}
-//                             />
-//                             <Modal.Description>
-//                               <Header as="h2">
-//                                 <Icon name="bullhorn" />
-//                                 {selectedContract.header}
-//                               </Header>
-//                               <Header as="h3">
-//                                 Bounty: {selectedContract.ammount}
-//                               </Header>
-//                               <p>{selectedContract.description}</p>
-//                               <Divider />
-//                               <Header>Know Something?</Header>
-//                               <p>
-//                                 Please Let us Know! Sumbit a response or upload
-//                                 a file!
-//                               </p>
-//                               <Form>
-//                                 <TextArea placeholder="Input your response..." />
-//                                 <UploadImage drizzle={this.props.drizzle} drizzleState={this.props.drizzleState} />
-//                               </Form>
-//                             </Modal.Description>
-//                           </Modal.Content>
-//                           <Modal.Actions>
-//                             <Button
-//                               primary
-//                               onClick={() => {
-//                                 this.handleSubmit(selectedContract);
-//                               }}
-//                             >
-//                               {' '}
-//                               Submit
 
                             </Button>
                               <Button secondary onClick={this.closeModal}>
