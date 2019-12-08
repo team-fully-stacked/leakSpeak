@@ -1,5 +1,6 @@
 import ipfsClient from 'ipfs-http-client';
 import React from 'react';
+import { Button, Icon, Label, Divider, Header, Input, Card, Message} from "semantic-ui-react";
 
 const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: '5001', protocol: 'https' })
 
@@ -60,18 +61,18 @@ class IPFS extends React.Component {
     };
 
     addVoter = async () => {
-        const success = await this.props.drizzle.contracts.ContractCreator.methods.addVoter(this.state.addVoterAddress).send({ from: this.state.currentAccount })
+        await this.props.drizzle.contracts.ContractCreator.methods.addVoter(this.state.addVoterAddress).send({ from: this.state.currentAccount })
         const votersLength = await this.props.drizzle.contracts.ContractCreator.methods.votersLength().call();
         console.log(">>>>>: IPFS -> addVoter -> votersLength", votersLength)
     }
 
     goLive = async () => {
-        const success = await this.props.drizzle.contracts.ContractCreator.methods.goLive().send({ from: this.state.currentAccount })
+        await this.props.drizzle.contracts.ContractCreator.methods.goLive().send({ from: this.state.currentAccount })
         this.setState({ isAlive: true }); // top kek, no time :\
     }
 
     addApprovall = async () => {
-        const success = await this.props.drizzle.contracts.ContractCreator.methods.vote().send({ from: this.state.currentAccount })
+        await this.props.drizzle.contracts.ContractCreator.methods.vote().send({ from: this.state.currentAccount })
         const currentApprovals = await this.props.drizzle.contracts.ContractCreator.methods.approvals().call()
         this.setState({ currentApprovals })
     }
@@ -103,28 +104,92 @@ class IPFS extends React.Component {
     // }
 
     render() {
-        console.log('>>>>>>', this.props)
         let hashResult;
         if (this.state.currentFileIPFSHash) hashResult = <a href={`https://ipfs.infura.io/ipfs/${this.state.currentFileIPFSHash}`}>{`https://ipfs.infura.io/ipfs/${this.state.currentFileIPFSHash}`}</a>
+        let color = 'red'
+        let message = 'Not Live'
+        if(this.state.isAlive) {
+            color ='green'
+            message='Live'
+        } else {
+            color = 'red'
+            message = 'Not Live'
+        }
+        
         return (
-            <div>
-
-                <div>
-                    <p>{`Is Contract Active: ${this.state.isAlive}`}</p>
-                    <p>{`Current Approvals ${this.state.currentApprovals}`}</p>
-
-                    <input onChange={(e) => this.onChange(e)}></input>
-                    <button onClick={() => this.addVoter()}>Add Voter</button>
-                    <button onClick={() => this.goLive()}>Activate Contract</button>
-                    <button onClick={() => this.addApprovall()}>Add Approval</button>
-
-                    <button>Withdraw</button>
+            <div style={{
+                marginTop: "30px"
+            }}>
+                <div style={{
+                    marginBottom: "30px"
+                }}>
+                <Divider >
+                    <Header as='h3'>
+                    Basic Information 
+                    </Header>
+                </Divider>
                 </div>
-
                 <div>
-                    <input type="file" onChange={(event) => this.onUpload(event.target.files[0])} />
-                    <p>{this.state.message}</p>
-                    {hashResult}
+                {(!this.state.isAlive) ?
+                <div>
+                <Button basic color={color} horizontal size={'large'}>
+                    {message}
+                </Button> 
+                <div style={{
+                    margin: '10px'
+                }}>
+                    <Input onChange={(e) => this.onChange(e)}></Input>
+                    <Button color={'orange'} onClick={() => this.addVoter()}> <Icon name="add" />Add Voter</Button>
+                    <Button color={'green'} onClick={() => this.goLive()}><Icon name="rocket" /> Go Live</Button>
+                </div>
+                </div> : <div>
+                
+                <Card>
+                        <Card.Header>
+                          <Message
+                            success={this.state.isAlive}
+                            warning={this.state.isAlive && !this.state.currentApprovals}
+                            negative={!this.state.isAlive}
+                            header={`Status:
+                              ${
+                                this.state.isAlive
+                                  ? this.state.currentApprovals
+                                    ? this.state.currentApprovals
+                                      ? 'Quorum Met'
+                                      : 'Awaiting Votes'
+                                    : 'Awaiting Votes'
+                                  : 'Not Live'
+                              }`}
+                          ></Message>
+                        </Card.Header>
+                        <Card.Content>
+                          <div
+                            style={{
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                            }}
+                          >
+                           
+                            
+                            {(!this.state.currentApprovals) ? <div>
+                                <Button onClick={() => this.addApprovall()}>Add Approval</Button>
+                            </div> : 
+                            <Label>
+                            <Icon link name="thumbs up" color="black" />
+                            Verified
+                          </Label>
+                        }
+                            {this.state.currentApprovals} / {1}
+                          </div>
+                        </Card.Content>
+                      </Card> 
+                      </div>
+                    }
+                <div style={{
+                    margin: '10px'
+                }}>
+                    
+                </div>
                 </div>
             </div >
         )

@@ -23,10 +23,7 @@ class JournalistView extends React.Component {
     const tokenSymbol = await this.props.drizzle.contracts.TokenMinter.methods
       .symbol()
       .call();
-    const quorum = await this.props.drizzle.contracts.ContractCreator.methods
-      .quorum()
-      .call();
-    console.log('>>>>>: JournalistView -> getData -> quorum', quorum);
+    await this.props.drizzle.contracts.ContractCreator.methods.quorum().call();
 
     return {
       userAddress,
@@ -38,7 +35,8 @@ class JournalistView extends React.Component {
   //0x8d165F7bDB9AaFD6Fd6DD2Aa6D7E2a9b390fC1B4
 
   componentDidMount = async () => {
-    this.setState(await this.getData());
+    const data = await this.getData()
+    this.setState(data);
   };
 
   handleInputChange = event => {
@@ -93,6 +91,7 @@ class JournalistView extends React.Component {
               ref={textarea => (this.textArea = textarea)}
               id="jAddr"
               value={userAddress}
+              readOnly={true}
               rows="1"
             />
             ,
