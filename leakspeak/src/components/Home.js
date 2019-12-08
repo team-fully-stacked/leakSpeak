@@ -1,13 +1,13 @@
 import React from 'react'
-import { Button, Icon, Image, Item, Label, Modal, Header, Divider, TextArea, Form} from 'semantic-ui-react'
+import { Button, Icon, Image, Item, Label, Modal, Header, Divider, TextArea, Form, Input} from 'semantic-ui-react'
 
 import './Home.css';
-import HeaderSubHeader from 'semantic-ui-react/dist/commonjs/elements/Header/HeaderSubheader';
 
 class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            isModal: false,
             contracts: [{
                 header: 'Looking for infromation on car crash',
                 company: 'BBC',
@@ -46,14 +46,32 @@ class Home extends React.Component {
 
             }]
         }
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleModal = this.handleModal.bind(this)
       }
 
+      handleSubmit(contract) {
+          contract.completed = true;
+          this.setState({isModal: false})
+          }
 
+          handleModal() {
+              this.setState({isModal: true})
+          }
 
     render() {
-        const contracts = this.state.contracts
+        const contracts = this.state.contracts.filter(contract => {
+            return contract.completed === false
+        })
+
+       
         return (
+            <div>
+            <div className = 'search'>
+                <Input icon='newspaper' iconPosition='left' placeholder='Search tags...' /><Button>Filter</Button>
+            </div>
             <div className = 'home'>
+                <div className = 'all-contracts'>
         <Item.Group divided>
             {contracts.map(contract => {
                return <Item>
@@ -64,12 +82,11 @@ class Home extends React.Component {
                         <Item.Description>{contract.description}</Item.Description>
                         <Item.Extra>
                             {contract.label.map(lab => {
-                                return <Label>{lab}</Label>
+                                return <Label color='yellow'>{lab}</Label>
                             })}
-                            <Button basic color='green'> Approve </Button>
-                            <Button basic color='red'>Decline</Button>
                         </Item.Extra>
-                        <Modal closeIcon trigger={<Button primary floated='right'> Provide Infromation  .<Icon name='edit'/></Button>} >
+                        <Button onClick={this.handleModal} color='orange' floated='right'> Provide Infromation  .<Icon name='edit'/></Button>
+                        <Modal closeIcon open={this.state.isModal} >
                             <Modal.Header>{contract.company} - {contract.location}</Modal.Header>
                             <Modal.Content image>
                             <Image wrapped size='medium' src='no-image-icon-15.png' />
@@ -78,7 +95,7 @@ class Home extends React.Component {
                                 <Icon name='bullhorn' />
                                 {contract.header}
                                 </Header>
-                                <Header as='h3'>Bounty:{contract.ammount}</Header>
+                                <Header as='h3'>Bounty: {contract.ammount}</Header>
                                 <p>{contract.description}</p>
                                 <Divider />
                                 <Header>Know Something?</Header>
@@ -92,14 +109,15 @@ class Home extends React.Component {
                             </Modal.Description>
                             </Modal.Content>
                             <Modal.Actions>
-                                <Button primary> Submit</Button>
-                                <Button primary> Cancel</Button>
+                                <Button primary onClick={() => {this.handleSubmit(contract)}}> Submit</Button>
                             </Modal.Actions>
                         </Modal>
                     </Item.Content>
                 </Item>
             })}
         </Item.Group>
+        </div>
+        </div>
         </div>
 
         )
