@@ -1,5 +1,6 @@
 pragma solidity ^0.5.11;
 
+
 contract tokenMinter {
     string public name = "";
     string public symbol = "";
@@ -63,3 +64,4 @@ library SafeMath {
       return c;
     }
 }
+
