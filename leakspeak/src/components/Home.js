@@ -250,7 +250,7 @@ class Home extends React.Component {
                           floated="right"
                         >
                           {' '}
-                          Provide information .<Icon name="edit" />
+                          Provide information .<Icon name="upload disk" />
                         </Button>
                         <Modal open={this.state.isModal}>
                           <Modal.Header>
