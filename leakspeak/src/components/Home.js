@@ -16,6 +16,7 @@ import {
 import contracts from '../contractData';
 
 import './Home.css';
+import UploadImage from './UploadImage';
 
 class Home extends React.Component {
   constructor(props) {
@@ -62,6 +63,7 @@ class Home extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     const contracts = this.state.contracts.filter(contract => {
       return contract.completed === false;
     });
@@ -149,17 +151,7 @@ class Home extends React.Component {
                               </p>
                               <Form>
                                 <TextArea placeholder="Input your response..." />
-                                <Button>
-                                  {' '}
-                                  <Icon name="camera" /> Upload Image/Video
-                                </Button>
-                                <Button>
-                                  {' '}
-                                  <Icon name="file audio" /> Upload Audio File
-                                </Button>
-                                <Button>
-                                  <Icon name="folder open" /> Upload Document
-                                </Button>
+                                <UploadImage drizzle={this.props.drizzle} drizzleState={this.props.drizzleState} />
                               </Form>
                             </Modal.Description>
                           </Modal.Content>
