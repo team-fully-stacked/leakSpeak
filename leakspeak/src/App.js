@@ -5,7 +5,6 @@ import './App.css';
 import LandingPage from './components/LandingPage';
 import IPFS from './IPFS';
 
-
 export default () => (
   <DrizzleContext.Consumer>
     {drizzleContext => {
