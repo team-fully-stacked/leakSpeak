@@ -69,6 +69,8 @@ class JournalistView extends React.Component {
       tokenSymbol,
     } = this.state;
     return (
+      <div className = 'journalist-view'>
+      <Button>Create Contract</Button>
       <Card centered={true}>
         <Card.Content textAlign="center">
           <h2>Address: {userAddress}</h2>
@@ -96,6 +98,7 @@ class JournalistView extends React.Component {
           </h2>
         </Card.Content>
       </Card>
+      </div>
     );
   }
 }
