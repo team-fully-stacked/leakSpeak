@@ -5,8 +5,9 @@ class CreateContract extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      question: '',
       description: "",
-      quorum: 0,
+      quorum: '',
       open: false,
       description: '',
       amount: 0.00,
@@ -22,7 +23,7 @@ class CreateContract extends React.Component {
 
   submit = () => {
     console.log(this.state)
-    this.setState({description: '', open: false, amount: 0, location: ''})
+    this.setState({description: '', open: false, amount: 0, location: '', question: '', quorum: 0})
 
   }
 
@@ -45,7 +46,9 @@ class CreateContract extends React.Component {
                   Description
                   </Header>
               </Divider>
+             
           <Form>
+            <Input fluid placeholder= 'Question...' value={this.state.question} onChange={(evt) => {this.setState({question: evt.target.value})}}/>
           <TextArea placeholder='Tell us more' value={this.state.description} onChange={(evt) => {this.setState({description: evt.target.value})}}/>
           </Form>
           {' '}
@@ -55,6 +58,8 @@ class CreateContract extends React.Component {
           <Label>.00</Label>          
         </Input>
         <Input placeholder='Location...' value={this.state.location} onChange={(evt) => {this.setState({location: evt.target.value})}}/>
+        <Input placeholder='Quorum...' value={this.state.quorum} onChange={(evt) => {this.setState({quorum: evt.target.value})}}/>
+
         </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
