@@ -5,7 +5,7 @@ import React from 'react';
 const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: '5001', protocol: 'https' })
 
 class IPFS extends React.Component {
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
             // currentAccount: '',
@@ -107,6 +107,7 @@ class IPFS extends React.Component {
     // }
 
     render() {
+        console.log('fuk!!')
         let hashResult;
         if (this.state.currentFileIPFSHash) hashResult = <a href={`https://ipfs.infura.io/ipfs/${this.state.currentFileIPFSHash}`}>{`https://ipfs.infura.io/ipfs/${this.state.currentFileIPFSHash}`}</a>
         return (

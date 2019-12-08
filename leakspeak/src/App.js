@@ -30,7 +30,7 @@ export default () => (
         <div>
           <Navbar />
           <Routes drizzle={drizzle} drizzleState={drizzleState} />
-          <IPFS></IPFS>
+          <IPFS drizzle={drizzle} drizzleState={drizzleState}></IPFS>
         </div>
       );
     }}
