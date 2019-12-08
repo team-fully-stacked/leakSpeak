@@ -21,13 +21,11 @@ const Navbar = props => {
         <Button>Organization Page</Button>
       </Link>
       {journalist ? (
-        <Link to="contracts">
+        <Link to="/contracts">
           <Button>Manage Contracts</Button>
         </Link>
       ) : (
-          <Link>
-        <Button>Upload Data</Button>
-      </Link> )}
+      <></>)}
 
     </div>
   );
