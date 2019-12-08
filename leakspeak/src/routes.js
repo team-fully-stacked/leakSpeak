@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-
 //Components
 import Home from './components/Home';
 import Org from './components/Org';
@@ -9,6 +8,7 @@ import JournalistView from './components/JournalistView';
 class Routes extends React.Component {
   render() {
     const { drizzle, drizzleState } = this.props;
+    // TODO: pass drizzle to the below components!
 
     return (
       <Switch>
