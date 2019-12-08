@@ -1,6 +1,5 @@
 pragma solidity ^0.5.11;
 
-
 contract TokenMinter {
     string public name = "";
     string public symbol = "";
