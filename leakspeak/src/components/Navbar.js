@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Image } from "semantic-ui-react";
+import { Button, Image, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 import logo from "./522a024b-0532-416c-bd65-8828f4cd3f4a_200x200.png";
@@ -28,22 +28,22 @@ const Navbar = props => {
         }}
       >
         <Link to="/organization">
-          <Button>Organization Page</Button>
+          <Button><Icon name="globe" />Organization Page</Button>
         </Link>
         {journalist ? (
           <div>
             <Link to="/contracts">
-              <Button>Manage Contracts</Button>
+              <Button> <Icon name="setting" />Manage Contracts</Button>
             </Link>
             <Link to="/journalist">
-              <Button>Journalist Page</Button>
+              <Button><Icon name="briefcase" />Journalist Page</Button>
             </Link>
           </div>
         ) : (
           <></>
         )}
         <Link to="/source">
-          <Button>Submit Data</Button>
+          <Button><Icon name="users" />Submit Data</Button>
         </Link>
       </div>
     </div>
