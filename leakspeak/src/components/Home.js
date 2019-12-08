@@ -56,7 +56,7 @@ class Home extends React.Component {
           }
 
           handleModal() {
-              this.setState({isModal: true})
+              this.setState({isModal: !this.state.isModal})
           }
 
     render() {
@@ -86,7 +86,7 @@ class Home extends React.Component {
                             })}
                         </Item.Extra>
                         <Button onClick={this.handleModal} color='orange' floated='right'> Provide Infromation  .<Icon name='edit'/></Button>
-                        <Modal closeIcon open={this.state.isModal} >
+                        <Modal open={this.state.isModal} >
                             <Modal.Header>{contract.company} - {contract.location}</Modal.Header>
                             <Modal.Content image>
                             <Image wrapped size='medium' src='no-image-icon-15.png' />
@@ -110,6 +110,7 @@ class Home extends React.Component {
                             </Modal.Content>
                             <Modal.Actions>
                                 <Button primary onClick={() => {this.handleSubmit(contract)}}> Submit</Button>
+                                <Button secondary onClick={this.handleModal}> Cancel</Button>
                             </Modal.Actions>
                         </Modal>
                     </Item.Content>
