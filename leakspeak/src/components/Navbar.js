@@ -1,8 +1,10 @@
-import React from "react";
-import { Button, Image, Icon } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Button, Image, Icon } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import logo from "./522a024b-0532-416c-bd65-8828f4cd3f4a_200x200.png";
+import logo from './522a024b-0532-416c-bd65-8828f4cd3f4a_200x200.png';
 
 const Navbar = props => {
   const { journalist } = props;
@@ -15,6 +17,7 @@ const Navbar = props => {
         flexDirection: "column"
       }}
     >
+      <ToastContainer />
       <div style={{ height: "100px" }}>
         <img src={logo} />
       </div>

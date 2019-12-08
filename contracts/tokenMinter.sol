@@ -39,14 +39,14 @@ contract TokenMinter {
     function allowance(address owner, address delegate) public view returns (uint) {
         return allowed[owner][delegate];
     }
-    function transferFrom(address owner, address buyer, uint numTokens) public returns (bool) {
+    function transferFrom(address owner, address recipient, uint numTokens) public returns (bool) {
         require(numTokens <= balances[owner]);
         require(numTokens <= allowed[owner][msg.sender]);
 
         balances[owner] = balances[owner].sub(numTokens);
         allowed[owner][msg.sender] = allowed[owner][msg.sender].sub(numTokens);
-        balances[buyer] = balances[buyer].add(numTokens);
-        emit Transfer(owner, buyer, numTokens);
+        balances[recipient] = balances[recipient].add(numTokens);
+        emit Transfer(owner, recipient, numTokens);
         return true;
     }
 }
