@@ -69,7 +69,7 @@ class Home extends React.Component {
                             <Button basic color='green'> Approve </Button>
                             <Button basic color='red'>Decline</Button>
                         </Item.Extra>
-                        <Modal trigger={<Button primary floated='right'> Provide Infromation  .<Icon name='edit'/></Button>} >
+                        <Modal closeIcon trigger={<Button primary floated='right'> Provide Infromation  .<Icon name='edit'/></Button>} >
                             <Modal.Header>{contract.company} - {contract.location}</Modal.Header>
                             <Modal.Content image>
                             <Image wrapped size='medium' src='no-image-icon-15.png' />
@@ -85,41 +85,21 @@ class Home extends React.Component {
                                 <p>Please Let us Know! Sumbit a response or upload a file!</p>
                                 <Form>
                                     <TextArea placeholder="Input your response..."/>
+                                    <Button> <Icon name="camera" /> Upload Image/Video</Button>
+                                    <Button> <Icon name='file audio' /> Upload Audio File</Button>
+                                    <Button><Icon name='folder open' /> Upload Document</Button>
                                 </Form>
                             </Modal.Description>
                             </Modal.Content>
+                            <Modal.Actions>
+                                <Button primary> Submit</Button>
+                                <Button primary> Cancel</Button>
+                            </Modal.Actions>
                         </Modal>
                     </Item.Content>
                 </Item>
             })}
         </Item.Group>
-        <Modal trigger={<Button>Long Modal</Button>}>
-    <Modal.Header>Profile Picture</Modal.Header>
-    <Modal.Content image>
-      <Image wrapped size='medium' src='/images/wireframe/image.png' />
-      <Modal.Description>
-        <Header>Modal Header</Header>
-        <p>
-          This is an example of expanded content that will cause the modal's
-          dimmer to scroll
-        </p>
-        <Image src='/images/wireframe/paragraph.png' />
-        <Image src='/images/wireframe/paragraph.png' />
-        <Image src='/images/wireframe/paragraph.png' />
-        <Image src='/images/wireframe/paragraph.png' />
-        <Image src='/images/wireframe/paragraph.png' />
-        <Image src='/images/wireframe/paragraph.png' />
-        <Image src='/images/wireframe/paragraph.png' />
-        <Image src='/images/wireframe/paragraph.png' />
-      </Modal.Description>
-    </Modal.Content>
-    <Modal.Actions>
-      <Button primary >
-        Proceed <Icon name='right chevron' />
-      </Button>
-    </Modal.Actions>
-  </Modal>
-
         </div>
 
         )
