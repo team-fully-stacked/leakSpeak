@@ -19,23 +19,23 @@ class Org extends React.Component {
   };
 
   componentDidMount = () => {
-    const { orgName, tokens } = this.getName();
+    const { orgName, tokens } = this.getData();
     this.setState({ orgName, tokens });
   };
 
   mintTokens = n => {
-    const { tokens } = this.state;
+    let { tokens } = this.state;
+    n = parseInt(n)
     this.setState({ tokens: tokens + n });
   };
 
-  issueToken = () => {
-    const { tokens } = this.state;
-    this.setState({ tokens: --tokens });
+  issueToken = (adress) => {
+    let { tokens } = this.state;
+    this.setState({ tokens: tokens - 1 });
   };
 
   render() {
-    const { orgName, tokens, mint, issue } = this.state;
-    const { handleClose, mintToken, isssueToken } = this;
+    const { orgName, tokens } = this.state;
     return (
       <div>
         <h1>{orgName}</h1>
@@ -46,3 +46,5 @@ class Org extends React.Component {
     );
   }
 }
+
+export default Org;
