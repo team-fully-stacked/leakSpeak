@@ -1,5 +1,5 @@
 import React from "react";
-import { TextArea, Form, Item, Modal, Button, Icon } from "semantic-ui-react";
+import { TextArea, Form, Item, Modal, Button, Icon, Label } from "semantic-ui-react";
 import CreateContract from "./CreateContract";
 
 class ManageContracts extends React.Component {
@@ -81,18 +81,20 @@ class ManageContracts extends React.Component {
                         {contract.description}
                       </Item.Description>
                       <Item.Extra>
+                        {contract.label.map(lab => {
+                          return <Label color="yellow">{lab}</Label>;
+                        })}
                         <Icon
                           name="edit"
-                          onClick={() =>{
+                          onClick={() => {
                             let tagString = contract.label.join(",");
 
                             this.setState({
                               tagEdit: true,
                               targetTags: idx,
                               tagString
-                            })
-                        }
-                          }
+                            });
+                          }}
                         />
                       </Item.Extra>
                       {contract.live ? (
@@ -119,17 +121,22 @@ class ManageContracts extends React.Component {
             <Modal open={this.state.tagEdit}>
               <Modal.Header>Add tags sperated by a comma (,)</Modal.Header>
               <Modal.Content>
-                  <Form>
-                <TextArea
-                  value={this.state.tagString}
-                  onChange={e => {this.setState({tagString: e.target.value})}}
-                />
+                <Form>
+                  <TextArea
+                    value={this.state.tagString}
+                    onChange={e => {
+                      this.setState({ tagString: e.target.value });
+                    }}
+                  />
                 </Form>
               </Modal.Content>
               <Modal.Actions>
                 <Button
                   onClick={() => {
-                    this.modifyTags(this.state.tagString, this.state.targetTags);
+                    this.modifyTags(
+                      this.state.tagString,
+                      this.state.targetTags
+                    );
                     this.setState({
                       targetTags: 0,
                       tagString: "",
