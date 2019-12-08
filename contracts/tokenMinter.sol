@@ -1,4 +1,5 @@
-pragma solidity ^0.5.12;
+pragma solidity ^0.5.11;
+
 
 contract tokenMinter {
     string public name = "";
@@ -63,3 +64,4 @@ library SafeMath {
       return c;
     }
 }
+
