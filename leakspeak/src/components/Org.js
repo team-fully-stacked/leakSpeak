@@ -1,6 +1,7 @@
 import React from "react";
 import Mint from "./Mint";
 import Issue from "./Issue";
+import {Card} from "semantic-ui-react"
 
 class Org extends React.Component {
   constructor(props) {
@@ -37,12 +38,14 @@ class Org extends React.Component {
   render() {
     const { orgName, tokens } = this.state;
     return (
-      <div>
+      <Card centered={true}>
+        <Card.Content textAlign="center">
         <h1>{orgName}</h1>
         <h2>{tokens}</h2>
+        </Card.Content>
         <Mint minter={this.mintTokens} />
         <Issue issuer={this.issueToken} />
-      </div>
+      </Card>
     );
   }
 }

@@ -5,7 +5,12 @@ import { Link } from "react-router-dom";
 const Navbar = props => {
   const { journalist } = props;
   return (
-    <div className="navbar">
+    <div className="navbar" style={{
+        paddingTop: "26px",
+        justifyContent: "center",
+        alignItems: "center",
+        display: "flex"
+    }}>
       <Link to="/org">
         <Button>Organization Page</Button>
       </Link>
