@@ -1,7 +1,7 @@
 import Migrations from './contracts/Migrations.json';
 import ContractCreator from './contracts/ContractCreator.json';
 import SafeMath from './contracts/SafeMath.json';
-import TokenMinter from './contracts/tokenMinter.json';
+import TokenMinter from './contracts/TokenMinter.json';
 
 const options = {
   // web3: {

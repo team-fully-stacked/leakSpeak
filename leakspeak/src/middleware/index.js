@@ -1,15 +1,15 @@
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { generateStore } from 'drizzle';
 import drizzleOptions from '../drizzleOptions';
 
 const contractEventNotifier = store => next => action => {
   //BLOCK_RECEIVED
-  if (action.type === 'CONTRACT_SYNCED') {
-    toast.dismiss();
-    toast.success('Success! ✔️', {
-      autoclose: 5000,
-    });
-  }
+  // if (action.type === 'CONTRACT_SYNCED') {
+  //   toast.dismiss();
+  //   toast.success('Success! ✔️', {
+  //     autoclose: 5000,
+  //   });
+  // }
   return next(action);
 };
 
