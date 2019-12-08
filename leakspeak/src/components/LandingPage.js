@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Routes from "../routes";
+import {Card} from "semantic-ui-react"
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -25,7 +26,9 @@ class LandingPage extends React.Component {
     return (
       <div>
         <Navbar journalist={isTH} />
+        <Card>
         <Routes drizzle={drizzle} drizzleState={drizzleState} />
+        </Card>
       </div>
     );
   }
