@@ -1,7 +1,6 @@
 import React from 'react';
+import { Card } from "semantic-ui-react";
 import TokenForm from './TokenForm';
-import Issue from './Issue';
-import {Card} from "semantic-ui-react"
 
 class Org extends React.Component {
   constructor(props) {
@@ -63,13 +62,11 @@ class Org extends React.Component {
     const { orgName, tokens } = this.state;
     return (
       <Card centered={true}>
-        <Card.Content textAlign="center">
+        <Card.Content textAlign="center" />
         <h1>{orgName}</h1>
         <h2>{tokens}</h2>
         <TokenForm minter={this.transferTokens} formName={'transfer'} />
         <TokenForm minter={this.approveTokenTransfer} formName={'approve'} />
-
-
       </Card>
     );
   }

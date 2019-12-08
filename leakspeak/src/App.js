@@ -3,11 +3,7 @@ import React from 'react';
 import { Loader } from 'semantic-ui-react';
 import './App.css';
 import LandingPage from './components/LandingPage';
-import Navbar from './components/Navbar';
 import IPFS from './IPFS';
-import Routes from './routes';
-
-
 
 
 export default () => (
@@ -30,10 +26,8 @@ export default () => (
       }
       return (
         <div>
-          <Navbar />
-          <Routes drizzle={drizzle} drizzleState={drizzleState} />
-          <IPFS drizzle={drizzle} drizzleState={drizzleState}></IPFS>
           <LandingPage drizzle={drizzle} drizzleState={drizzleState} />
+          <IPFS drizzle={drizzle} drizzleState={drizzleState} />
         </div>
       );
     }}

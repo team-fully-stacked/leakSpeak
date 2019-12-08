@@ -72,7 +72,8 @@ contract ContractCreator {
         return true;
     }
 
-    function submitInfo(string memory info) public isLive returns (bool){
+    function submitInfo(string memory info) public returns (bool){
+    // function submitInfo(string memory info) public isLive returns (bool){
         responseInfo = info;
         return true;
     }

@@ -6,50 +6,22 @@ const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: '5001', protocol: 'https
 
 class IPFS extends React.Component {
     constructor(props) {
-        super();
+        super(props);
         this.state = {
-            // currentAccount: '',
-            // currentBalance: '',
-            // currentBlock: '',
+            currentAccount: '',
             currentFileIPFSHash: '',
             ipfsHashArray: '',
-            message: '',
+            message: 'no msg yet',
         };
     };
 
-    // async componentDidMount() {
-    // get version
-    // console.log('Current web3 version: ', web3.version);
+    componentDidMount = async () => {
+        const currentAccount = (await this.props.drizzle.web3.eth.getAccounts())[0];
 
-    // get all metamask info
-    // await this.getCurrentAccountBalAndBlockNum()
+        this.setState({ currentAccount });
+    };
 
-    // get all IPFS hashes
-    // await this.getIPFSHashes();
 
-    // update the state
-    // this.setState({
-    //     message: `Current web3 version: ${web3.version}`
-    // });
-    // };
-
-    // getCurrentAccountBalAndBlockNum = async () => {
-    //     // get the accounts and log them
-    //     const accountsArray = await web3.eth.getAccounts();
-    //     // get the account address since it is the first element
-    //     const currentAccount = accountsArray[0];
-    //     // get the current balance
-    //     const currentBalance = await web3.eth.getBalance(currentAccount);
-    //     // get current block number
-    //     const currentBlock = await web3.eth.getBlockNumber();
-
-    //     this.setState({
-    //         currentAccount,
-    //         currentBalance: currentBalance.toString(),
-    //         currentBlock,
-    //     });
-    //     return { currentAccount, currentBalance, currentBlock };
-    // }
 
     onChange = (file) => {
         this.setState({
@@ -63,32 +35,31 @@ class IPFS extends React.Component {
             const fileBuffer = await Buffer.from(fileArrayBuffer)
             const results = await ipfs.add(fileBuffer)
             const currentFileIPFSHash = results[0].hash
-            console.log('Current File IPFS Hash>>>>>', currentFileIPFSHash)
+            console.log(">>>>>: IPFS -> fileReader.onload -> currentFileIPFSHash", currentFileIPFSHash, typeof currentFileIPFSHash)
 
             this.setState({
                 currentFileIPFSHash,
                 message: `Current File IPFS Hash: ${currentFileIPFSHash}`
             })
-            // const currentMultihash = getBytes32FromMultihash(results[0].hash)
-            // console.log('Multihash Encoding For Eth>>>>>', currentMultihash.digest)
-            // this.setState({
-            //     message: `Multihash Encoding For Eth: ${currentMultihash.digest}`
-            // })
 
-            // got the hash, now to plug it into the blockchain
-            // const ethResults = await ipfsContract.methods.setEntry(currentMultihash.digest).send({ from: this.state.currentAccount });
-            // console.log('Uploaded to Ethereum blockchain>>>>>', ethResults)
-            this.setState({
-                message: `Uploaded to Ethereum blockchain.`
-            })
+            const success = await this.props.drizzle.contracts.ContractCreator.methods.submitInfo(currentFileIPFSHash).send({ from: this.state.currentAccount })
 
-            // this.getIPFSHashes();
+            if (success) {
+                console.log(await this.props.drizzle.contracts.ContractCreator.methods.responseInfo().call())
+                this.setState({
+                    message: `Uploaded to Ethereum blockchain.`
+                })
+            } else {
+                this.setState({
+                    message: 'failed to upload!'
+                })
+            }
         };
     };
 
-    getIPFSHash = async () => {
-
-    }
+    // getIPFSHash = async () => {
+    //     const ipfsHash = await this.props.drizzleState.
+    // }
 
     // getIPFSHashes = async () => {
     //     // get all hashes for current address from blockchain
@@ -107,7 +78,7 @@ class IPFS extends React.Component {
     // }
 
     render() {
-        console.log('fuk!!')
+        console.log('>>>>>>', this.props)
         let hashResult;
         if (this.state.currentFileIPFSHash) hashResult = <a href={`https://ipfs.infura.io/ipfs/${this.state.currentFileIPFSHash}`}>{`https://ipfs.infura.io/ipfs/${this.state.currentFileIPFSHash}`}</a>
         return (
@@ -115,7 +86,6 @@ class IPFS extends React.Component {
                 <input type="file" onChange={(event) => this.onChange(event.target.files[0])} />
                 <p>{this.state.message}</p>
                 {hashResult}
-                {/* <a>{this.state.ipfsHashArray}</a> */}
             </div >
         )
     }
