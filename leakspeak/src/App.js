@@ -3,8 +3,6 @@ import React from 'react';
 import { Loader } from 'semantic-ui-react';
 import './App.css';
 import LandingPage from './components/LandingPage';
-import IPFS from './IPFS';
-
 
 export default () => (
   <DrizzleContext.Consumer>
@@ -27,7 +25,6 @@ export default () => (
       return (
         <div>
           <LandingPage drizzle={drizzle} drizzleState={drizzleState} />
-          <IPFS drizzle={drizzle} drizzleState={drizzleState} />
         </div>
       );
     }}

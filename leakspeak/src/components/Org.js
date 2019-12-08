@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card } from "semantic-ui-react";
+import { Card } from 'semantic-ui-react';
 import TokenForm from './TokenForm';
-
+import { toast, Flip } from 'react-toastify';
 
 class Org extends React.Component {
   constructor(props) {
@@ -33,31 +33,50 @@ class Org extends React.Component {
   transferTokens = async (journalistAddress, numTokens) => {
     const { orgAddress } = this.state;
 
-    await this.props.drizzle.contracts.TokenMinter.methods
-      .transfer(journalistAddress, numTokens)
-      .send({ from: orgAddress });
+    this.setState({ loading: true });
+    toast.info('Processing change...', {
+      position: 'top-right',
+      autoClose: 10000,
+      transition: Flip,
+    });
+    try {
+      await this.props.drizzle.contracts.TokenMinter.methods
+        .transfer(journalistAddress, numTokens)
+        .send({ from: orgAddress });
+    } catch (error) {
+      this.setState({ errorMessage: error.message });
+      toast.dismiss();
+    }
   };
 
   approveTokenTransfer = async (journalistAddress, numTokens) => {
     const { orgAddress } = this.state;
 
-    await this.props.drizzle.contracts.TokenMinter.methods
-      .approveTokenTransfer(journalistAddress, numTokens)
-      .send({ from: orgAddress });
+    this.setState({ loading: true });
+    toast.info('Processing change...', {
+      position: 'top-right',
+      autoClose: 10000,
+      transition: Flip,
+    });
+    try {
+      await this.props.drizzle.contracts.TokenMinter.methods
+        .approveTokenTransfer(journalistAddress, numTokens)
+        .send({ from: orgAddress });
+    } catch (error) {
+      this.setState({ errorMessage: error.message });
+      toast.dismiss();
+    }
   };
 
   render() {
-    console.log(this.props, 'PROPS ORG  ');
     const { orgName, tokens } = this.state;
     return (
       <Card centered={true}>
-
         <Card.Content textAlign="center">
           <h1>{orgName}</h1>
           <h2>{tokens}</h2>
           <TokenForm minter={this.transferTokens} formName={'transfer'} />
         </Card.Content>
-
       </Card>
     );
   }

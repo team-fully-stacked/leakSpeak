@@ -37,7 +37,12 @@ class Mint extends React.Component {
             : 'Approve Transfer of How Many Tokens?'}
         </Modal.Header>
         <Modal.Content>
-          <Form onSubmit={() => minter(recipientAddress, +tokenQty)}>
+          <Form
+            onSubmit={() => {
+              minter(recipientAddress, +tokenQty);
+              this.setState({ isOpen: false });
+            }}
+          >
             <Form.Input
               required
               label={transfer ? 'Recipient Address' : 'Delegate Address'}

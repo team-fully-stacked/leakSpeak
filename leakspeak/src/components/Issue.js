@@ -6,7 +6,8 @@ class Issue extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      address: '',
+      ownerAddress: '',
+      tokenQty: '',
     };
   }
 
@@ -16,15 +17,16 @@ class Issue extends React.Component {
   };
 
   //Withdraw tokens from ownerAddress
-  // transferFrom = async (ownerAddress, buyerAddress, numTokens) => {
-  //   await this.props.drizzle.contracts.TokenMinter.methods
-  //   .transferFrom(ownerAddress, buyerAddress, numTokens)
-  //   .send({ from: userAddress });
-  // }
+  transferFrom = async (ownerAddress, userAddress, numTokens) => {
+    await this.props.drizzle.contracts.TokenMinter.methods
+      .transferFrom(ownerAddress, userAddress, numTokens)
+      .send({ from: userAddress });
+  };
 
+  //Needs userAddress passed in as a prop
   render() {
-    const { issuer } = this.props;
-    const { address } = this.state;
+    const { ownerAddress } = this.state;
+    const { userAddress } = this.props;
     return (
       <Modal
         trigger={
@@ -38,17 +40,36 @@ class Issue extends React.Component {
         <Modal.Content>
           <Input onChange={this.handleChange} />
           <Modal.Actions>
-            <Button
-              onClick={() => {
-                issuer(address);
-                this.setState({ isOpen: false });
-              }}
+            <Form
+              onSubmit={() =>
+                transferFrom(ownerAddress, userAddress, +tokenQty)
+              }
             >
-              Confirm
-            </Button>
-            <Button onClick={() => this.setState({ isOpen: false })}>
-              Cancel
-            </Button>
+              <Form.Input
+                required
+                label={'Owner Address'}
+                type="text"
+                placeholder="Address"
+                name="ownerAddress"
+                value={ownerAddress}
+                onChange={this.handleInputChange}
+              />
+              <Form.Input
+                required
+                label="Token Quantity"
+                type="number"
+                min="0"
+                name="tokenQty"
+                placeholder="0"
+                value={tokenQty}
+                onChange={this.handleInputChange}
+              />
+              <Button type="submit">Submit</Button>
+
+              <Button onClick={() => this.setState({ isOpen: false })}>
+                Cancel
+              </Button>
+            </Form>
           </Modal.Actions>
         </Modal.Content>
       </Modal>

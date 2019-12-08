@@ -1,16 +1,16 @@
-import React from 'react';
-import { Button, Card, Form } from 'semantic-ui-react';
-import TokenForm from './TokenForm';
+import React from "react";
+import { Button, Card, Form, Icon } from "semantic-ui-react";
+import TokenForm from "./TokenForm";
 
 class JournalistView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userAddress: '',
-      delegateAddress: '',
+      userAddress: "",
+      delegateAddress: "",
       tokenBalance: 0,
       allowance: 0,
-      tokenSymbol: '',
+      tokenSymbol: ""
     };
   }
 
@@ -22,25 +22,25 @@ class JournalistView extends React.Component {
     const tokenSymbol = await this.props.drizzle.contracts.TokenMinter.methods
       .symbol()
       .call();
-    const quorum = await this.props.drizzle.contracts.ContractCreator.methods.quorum().call()
-    console.log(">>>>>: JournalistView -> getData -> quorum", quorum)
+    await this.props.drizzle.contracts.ContractCreator.methods.quorum().call();
 
     return {
       userAddress,
       tokenBalance,
-      tokenSymbol,
+      tokenSymbol
     };
   };
 
   //0x8d165F7bDB9AaFD6Fd6DD2Aa6D7E2a9b390fC1B4
 
   componentDidMount = async () => {
-    this.setState(await this.getData());
+    const data = await this.getData()
+    this.setState(data);
   };
 
   handleInputChange = event => {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     });
   };
 
@@ -66,36 +66,59 @@ class JournalistView extends React.Component {
       delegateAddress,
       userAddress,
       tokenBalance,
-      tokenSymbol,
+      tokenSymbol
     } = this.state;
     return (
-      <Card centered={true}>
-        <Card.Content textAlign="center">
-          <h2>Address: {userAddress}</h2>
-          <h2>
-            Tokens: {tokenBalance}
-            {tokenSymbol}
-          </h2>
-          <TokenForm minter={this.approveTokenTransfer} formName={'approve'} />
-
-          <Form onSubmit={() => this.allowance(delegateAddress)}>
-            <Form.Input
-              required
-              label="Delegate Address"
-              type="text"
-              placeholder="Address"
-              name="delegateAddress"
-              value={delegateAddress}
-              onChange={this.handleInputChange}
+      <div className="journalist-view">
+        <Card centered={true}>
+          <Card.Content textAlign="center">
+            <h2>Address</h2>
+            <textarea
+              ref={textarea => (this.textArea = textarea)}
+              id="jAddr"
+              value={userAddress}
+              readOnly={true}
+              rows="1"
             />
-            <Button type="submit">Submit</Button>
-          </Form>
-
-          <h2>
-            Allowance: {allowance} {tokenSymbol}
-          </h2>
-        </Card.Content>
-      </Card>
+            ,
+            <p>
+              Copy Address to Clipboard:
+              <Button
+                onClick={() => {
+                  this.textArea.select();
+                  console.log(this.textArea);
+                  document.execCommand("copy");
+                }}
+              >
+                <Icon name="clipboard" />
+              </Button>
+            </p>
+            <h2>
+              Tokens: {tokenBalance}
+              {tokenSymbol}
+            </h2>
+            <TokenForm
+              minter={this.approveTokenTransfer}
+              formName={"approve"}
+            />
+            <Form onSubmit={() => this.allowance(delegateAddress)}>
+              <Form.Input
+                required
+                label="Delegate Address"
+                type="text"
+                placeholder="Address"
+                name="delegateAddress"
+                value={delegateAddress}
+                onChange={this.handleInputChange}
+              />
+              <Button type="submit">Submit</Button>
+            </Form>
+            <h2>
+              Allowance: {allowance} {tokenSymbol}
+            </h2>
+          </Card.Content>
+        </Card>
+      </div>
     );
   }
 }
