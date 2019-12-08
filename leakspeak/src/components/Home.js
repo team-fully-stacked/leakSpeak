@@ -157,6 +157,7 @@ class Home extends React.Component {
           completed: false,
         },
       ],
+      votes: 3,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleModal = this.handleModal.bind(this);
@@ -196,7 +197,7 @@ class Home extends React.Component {
     const contracts = this.state.contracts.filter(contract => {
       return contract.completed === false;
     });
-
+    const { votes } = this.state;
     const selectedContract = this.state.selectedContract;
 
     return (
@@ -254,8 +255,30 @@ class Home extends React.Component {
                         </Button>
                         <Modal open={this.state.isModal}>
                           <Modal.Header>
-                            {selectedContract.company} -{' '}
-                            {selectedContract.location}
+                            <div
+                              style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                              }}
+                            >
+                              <div>
+                                {selectedContract.company} -{' '}
+                                {selectedContract.location}
+                              </div>
+                              <div>
+                                <Icon
+                                  link
+                                  name="thumbs up"
+                                  color="green"
+                                  onClick={() => {
+                                    this.setState({
+                                      votes: votes + 1,
+                                    });
+                                  }}
+                                />
+                                {votes} / {5}
+                              </div>
+                            </div>
                           </Modal.Header>
                           <Modal.Content image>
                             <Image
