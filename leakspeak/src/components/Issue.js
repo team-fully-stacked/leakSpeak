@@ -1,12 +1,12 @@
-import React from "react";
-import { Button, Modal, Input } from "semantic-ui-react";
+import React from 'react';
+import { Button, Modal, Input } from 'semantic-ui-react';
 
 class Issue extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isOpen: false,
-      address: ""
+      address: '',
     };
   }
 
@@ -14,6 +14,14 @@ class Issue extends React.Component {
     const { value } = e.target;
     this.setState({ address: value });
   };
+
+  //Withdraw tokens from ownerAddress
+  // transferFrom = async (ownerAddress, buyerAddress, numTokens) => {
+  //   await this.props.drizzle.contracts.TokenMinter.methods
+  //   .transferFrom(ownerAddress, buyerAddress, numTokens)
+  //   .send({ from: userAddress });
+  // }
+
   render() {
     const { issuer } = this.props;
     const { address } = this.state;
@@ -38,7 +46,9 @@ class Issue extends React.Component {
             >
               Confirm
             </Button>
-            <Button onClick={()=> this.setState({ isOpen: false })}>Cancel</Button>
+            <Button onClick={() => this.setState({ isOpen: false })}>
+              Cancel
+            </Button>
           </Modal.Actions>
         </Modal.Content>
       </Modal>
