@@ -68,14 +68,14 @@ class ManageContracts extends React.Component {
                         floated="right"
                       >
                         {" "}
-                       Go Live<Icon name="edit" />
+                       Go Live <Icon name="edit" />
                       </Button>
                       <Button
                         color="orange"
                         floated="right"
                       >
                         {" "}
-                       Add Voter<Icon name="edit" />
+                       Add Voter <Icon name="edit" />
                       </Button>
                     </Item.Content>
                   </Item>

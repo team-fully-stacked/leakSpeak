@@ -1,7 +1,7 @@
-import React from 'react'
-import { Route, Switch} from 'react-router-dom'
-
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 //Components
+<<<<<<< HEAD
 import Home from './components/Home'
 import Org from './components/Org'
 import ManageContracts from './components/ManageConracts'
@@ -14,10 +14,52 @@ class Routes extends React.Component {
                 <Route exact path="/org" component={Org} />
                 <Route exact path="/journalist" component={ManageContracts} />
                 <Route exact path="/source" component={Home} />
+=======
+import Home from './components/Home';
+import Org from './components/Org';
+import JournalistView from './components/JournalistView';
 
-            </Switch>
-        )
-    }
+class Routes extends React.Component {
+  render() {
+    const { drizzle, drizzleState } = this.props;
+    // TODO: pass drizzle to the below components!
+>>>>>>> 7dd066f7f2b5d5ce75673c85c675c2be3586b7f9
+
+    return (
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/org" component={Org} />
+        <Route exact path="/contracts" component={Home} />
+        <Route exact path="/source" component={Home} />
+        <Route
+          exact
+          path="/organization"
+          render={props => {
+            return (
+              <Org
+                drizzle={drizzle}
+                drizzleState={drizzleState}
+                props={props}
+              />
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/journalist"
+          render={props => {
+            return (
+              <JournalistView
+                drizzle={drizzle}
+                drizzleState={drizzleState}
+                props={props}
+              />
+            );
+          }}
+        />
+      </Switch>
+    );
+  }
 }
 
-export default Routes
+export default Routes;
