@@ -60,18 +60,18 @@ class IPFS extends React.Component {
     };
 
     addVoter = async () => {
-        const success = await this.props.drizzle.contracts.ContractCreator.methods.addVoter(this.state.addVoterAddress).send({ from: this.state.currentAccount })
+        await this.props.drizzle.contracts.ContractCreator.methods.addVoter(this.state.addVoterAddress).send({ from: this.state.currentAccount })
         const votersLength = await this.props.drizzle.contracts.ContractCreator.methods.votersLength().call();
         console.log(">>>>>: IPFS -> addVoter -> votersLength", votersLength)
     }
 
     goLive = async () => {
-        const success = await this.props.drizzle.contracts.ContractCreator.methods.goLive().send({ from: this.state.currentAccount })
+        await this.props.drizzle.contracts.ContractCreator.methods.goLive().send({ from: this.state.currentAccount })
         this.setState({ isAlive: true }); // top kek, no time :\
     }
 
     addApprovall = async () => {
-        const success = await this.props.drizzle.contracts.ContractCreator.methods.vote().send({ from: this.state.currentAccount })
+        await this.props.drizzle.contracts.ContractCreator.methods.vote().send({ from: this.state.currentAccount })
         const currentApprovals = await this.props.drizzle.contracts.ContractCreator.methods.approvals().call()
         this.setState({ currentApprovals })
     }
@@ -103,7 +103,6 @@ class IPFS extends React.Component {
     // }
 
     render() {
-        console.log('>>>>>>', this.props)
         let hashResult;
         if (this.state.currentFileIPFSHash) hashResult = <a href={`https://ipfs.infura.io/ipfs/${this.state.currentFileIPFSHash}`}>{`https://ipfs.infura.io/ipfs/${this.state.currentFileIPFSHash}`}</a>
         return (
