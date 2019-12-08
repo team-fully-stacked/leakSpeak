@@ -4,8 +4,7 @@ import { Loader } from 'semantic-ui-react';
 
 import './App.css';
 
-import Navbar from './components/Navbar';
-import Routes from './routes';
+import LandingPage from './components/LandingPage';
 
 export default () => (
   <DrizzleContext.Consumer>
@@ -27,8 +26,7 @@ export default () => (
       }
       return (
         <div>
-          <Navbar />
-          <Routes drizzle={drizzle} drizzleState={drizzleState} />
+          <LandingPage drizzle={drizzle} drizzleState={drizzleState} />
         </div>
       );
     }}
