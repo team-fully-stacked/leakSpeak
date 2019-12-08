@@ -12,7 +12,7 @@ class Mint extends React.Component {
 
   handleChange = e => {
     const { value } = e.target;
-    this.setState({ tokenQty: value });
+    if(parseInt(value)) this.setState({ tokenQty: value });
   };
 
   render() {

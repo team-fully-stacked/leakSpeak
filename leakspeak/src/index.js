@@ -8,18 +8,16 @@ import { Drizzle } from 'drizzle';
 import { DrizzleContext } from 'drizzle-react';
 import './App.css';
 import Migrations from './contracts/Migrations.json';
-import OpenHire from './contracts/OpenHire';
-import store from './middleware';
+import tokenMinter from './contracts/tokenMinter.json'
 
-const options = { contracts: [Migrations, OpenHire] };
-const drizzle = new Drizzle(options, store);
+const options = { contracts: [Migrations, tokenMinter] };
+const drizzle = new Drizzle(options);
 
 ReactDOM.render(
   <DrizzleContext.Provider drizzle={drizzle}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-    ,
   </DrizzleContext.Provider>,
 
   document.getElementById('root')
