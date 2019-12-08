@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card } from "semantic-ui-react";
 import TokenForm from './TokenForm';
-import { Card } from 'semantic-ui-react';
 
 
 class Org extends React.Component {
