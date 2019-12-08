@@ -1,15 +1,15 @@
 {
   "contractName": "SafeMath",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.11+commit.c082d0b4\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/AlexMok/leakSpeak/contracts/TokenMinter.sol\":\"SafeMath\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/AlexMok/leakSpeak/contracts/TokenMinter.sol\":{\"keccak256\":\"0x6db60e9ac25036d53e7feec2c46358f9982435e2e2fceac1f1ae03f5baa97655\",\"urls\":[\"bzz-raw://98c583040a7e895c96cc3aa41589e1455b2610b3ae44391c3c09149349d1e801\",\"dweb:/ipfs/QmQZXyAsHfos8h6F5Qze5n5Z9Kt2ay7Nhvw1vftNfgboDD\"]}},\"version\":1}",
-  "bytecode": "0x60556023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea265627a7a72315820ed4f481ae5c829b7596177b6fda93f0f072464ef3b303615e7d06a946d4543b864736f6c634300050b0032",
-  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea265627a7a72315820ed4f481ae5c829b7596177b6fda93f0f072464ef3b303615e7d06a946d4543b864736f6c634300050b0032",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.11+commit.c082d0b4\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/AlexMok/leakSpeak/contracts/tokenMinter.sol\":\"SafeMath\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/AlexMok/leakSpeak/contracts/tokenMinter.sol\":{\"keccak256\":\"0x6db60e9ac25036d53e7feec2c46358f9982435e2e2fceac1f1ae03f5baa97655\",\"urls\":[\"bzz-raw://98c583040a7e895c96cc3aa41589e1455b2610b3ae44391c3c09149349d1e801\",\"dweb:/ipfs/QmQZXyAsHfos8h6F5Qze5n5Z9Kt2ay7Nhvw1vftNfgboDD\"]}},\"version\":1}",
+  "bytecode": "0x60556023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea265627a7a723158202d377b2ee7c157523b215dd995c17de839f3ae75c1824b7f5b878a97f937d9c364736f6c634300050b0032",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea265627a7a723158202d377b2ee7c157523b215dd995c17de839f3ae75c1824b7f5b878a97f937d9c364736f6c634300050b0032",
   "sourceMap": "2005:284:2:-;;132:2:-1;166:7;155:9;146:7;137:37;255:7;249:14;246:1;241:23;235:4;232:33;222:2;;269:9;222:2;293:9;290:1;283:20;323:4;314:7;306:22;347:7;338;331:24",
   "deployedSourceMap": "2005:284:2:-;;;;;;;;",
   "source": "pragma solidity ^0.5.11;\n\n\ncontract TokenMinter {\n    string public name = \"\";\n    string public symbol = \"\";\n    event Approval(address indexed tokenOwner, address indexed spender, uint tokens);\n    event Transfer(address indexed from, address indexed to, uint tokens);\n    mapping(address => uint256) balances;\n    uint256 totalSupply_;\n    using SafeMath for uint256;\n    mapping(address => mapping (address => uint256)) allowed;\n\n   constructor(uint256 total, string memory name_, string memory symbol_) public {\n    totalSupply_ = total;\n    balances[msg.sender] = totalSupply_;\n    name = name_;\n    symbol = symbol_;\n    }\n    function totalSupply() public view returns (uint256) {\n    return totalSupply_;\n    }\n\n    function balanceOf(address tokenOwner) public view returns (uint) {\n        return balances[tokenOwner];\n    }\n    function transfer(address receiver, uint numTokens) public returns (bool) {\n        require(numTokens <= balances[msg.sender]);\n        balances[msg.sender] = balances[msg.sender].sub(numTokens);\n        balances[receiver] = balances[receiver].add(numTokens);\n        emit Transfer(msg.sender, receiver, numTokens);\n        return true;\n    }\n    function approve(address delegate, uint numTokens) public returns (bool) {\n        allowed[msg.sender][delegate] = numTokens;\n        emit Approval(msg.sender, delegate, numTokens);\n        return true;\n    }\n\n    function allowance(address owner, address delegate) public view returns (uint) {\n        return allowed[owner][delegate];\n    }\n    function transferFrom(address owner, address buyer, uint numTokens) public returns (bool) {\n        require(numTokens <= balances[owner]);\n        require(numTokens <= allowed[owner][msg.sender]);\n\n        balances[owner] = balances[owner].sub(numTokens);\n        allowed[owner][msg.sender] = allowed[owner][msg.sender].sub(numTokens);\n        balances[buyer] = balances[buyer].add(numTokens);\n        emit Transfer(owner, buyer, numTokens);\n        return true;\n    }\n}\n\nlibrary SafeMath {\n    function sub(uint256 a, uint256 b) internal pure returns (uint256) {\n      assert(b <= a);\n      return a - b;\n    }\n\n    function add(uint256 a, uint256 b) internal pure returns (uint256) {\n      uint256 c = a + b;\n      assert(c >= a);\n      return c;\n    }\n}\n\n",
-  "sourcePath": "/Users/AlexMok/leakSpeak/contracts/TokenMinter.sol",
+  "sourcePath": "/Users/AlexMok/leakSpeak/contracts/tokenMinter.sol",
   "ast": {
-    "absolutePath": "/Users/AlexMok/leakSpeak/contracts/TokenMinter.sol",
+    "absolutePath": "/Users/AlexMok/leakSpeak/contracts/tokenMinter.sol",
     "exportedSymbols": {
       "SafeMath": [
         570
@@ -3941,7 +3941,7 @@
     "src": "0:2291:2"
   },
   "legacyAST": {
-    "absolutePath": "/Users/AlexMok/leakSpeak/contracts/TokenMinter.sol",
+    "absolutePath": "/Users/AlexMok/leakSpeak/contracts/tokenMinter.sol",
     "exportedSymbols": {
       "SafeMath": [
         570
@@ -7878,7 +7878,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.19",
-  "updatedAt": "2019-12-08T03:50:27.122Z",
+  "updatedAt": "2019-12-08T04:56:38.599Z",
   "devdoc": {
     "methods": {}
   },
