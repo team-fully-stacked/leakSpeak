@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card } from "semantic-ui-react";
 import TokenForm from './TokenForm';
+import { Card } from 'semantic-ui-react';
+
 
 class Org extends React.Component {
   constructor(props) {
@@ -32,29 +34,17 @@ class Org extends React.Component {
   transferTokens = async (journalistAddress, numTokens) => {
     const { orgAddress } = this.state;
 
-    console.log(journalistAddress, numTokens);
-    console.log(typeof numTokens);
-    console.log(orgAddress);
-    const success = await this.props.drizzle.contracts.TokenMinter.methods
+    await this.props.drizzle.contracts.TokenMinter.methods
       .transfer(journalistAddress, numTokens)
       .send({ from: orgAddress });
-
-    console.log(success, 'SUCCEED?');
   };
 
   approveTokenTransfer = async (journalistAddress, numTokens) => {
     const { orgAddress } = this.state;
 
-    const success = await this.props.drizzle.contracts.TokenMinter.methods
+    await this.props.drizzle.contracts.TokenMinter.methods
       .approveTokenTransfer(journalistAddress, numTokens)
       .send({ from: orgAddress });
-
-    console.log(success, 'SUCCEED?');
-  };
-
-  issueToken = adress => {
-    let { tokens } = this.state;
-    this.setState({ tokens: tokens - 1 });
   };
 
   render() {
@@ -62,11 +52,13 @@ class Org extends React.Component {
     const { orgName, tokens } = this.state;
     return (
       <Card centered={true}>
-        <Card.Content textAlign="center" />
-        <h1>{orgName}</h1>
-        <h2>{tokens}</h2>
-        <TokenForm minter={this.transferTokens} formName={'transfer'} />
-        <TokenForm minter={this.approveTokenTransfer} formName={'approve'} />
+
+        <Card.Content textAlign="center">
+          <h1>{orgName}</h1>
+          <h2>{tokens}</h2>
+          <TokenForm minter={this.transferTokens} formName={'transfer'} />
+        </Card.Content>
+
       </Card>
     );
   }
