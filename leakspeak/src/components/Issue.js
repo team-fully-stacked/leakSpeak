@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Modal, Input } from 'semantic-ui-react';
+import { toast, Flip } from 'react-toastify';
 
 class Issue extends React.Component {
   constructor(props) {
@@ -18,9 +19,20 @@ class Issue extends React.Component {
 
   //Withdraw tokens from ownerAddress
   transferFrom = async (ownerAddress, userAddress, numTokens) => {
-    await this.props.drizzle.contracts.TokenMinter.methods
-      .transferFrom(ownerAddress, userAddress, numTokens)
-      .send({ from: userAddress });
+    this.setState({ loading: true });
+    toast.info('Processing change...', {
+      position: 'top-right',
+      autoClose: 10000,
+      transition: Flip,
+    });
+    try {
+      await this.props.drizzle.contracts.TokenMinter.methods
+        .transferFrom(ownerAddress, userAddress, numTokens)
+        .send({ from: userAddress });
+    } catch (error) {
+      this.setState({ errorMessage: error.message });
+      toast.dismiss();
+    }
   };
 
   //Needs userAddress passed in as a prop

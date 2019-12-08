@@ -1,16 +1,17 @@
-import React from "react";
-import { Button, Card, Form, Icon } from "semantic-ui-react";
-import TokenForm from "./TokenForm";
+import React from 'react';
+import { Button, Card, Form, Icon } from 'semantic-ui-react';
+import TokenForm from './TokenForm';
+import { toast, Flip } from 'react-toastify';
 
 class JournalistView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userAddress: "",
-      delegateAddress: "",
+      userAddress: '',
+      delegateAddress: '',
       tokenBalance: 0,
       allowance: 0,
-      tokenSymbol: ""
+      tokenSymbol: '',
     };
   }
 
@@ -27,7 +28,7 @@ class JournalistView extends React.Component {
     return {
       userAddress,
       tokenBalance,
-      tokenSymbol
+      tokenSymbol,
     };
   };
 
@@ -40,7 +41,7 @@ class JournalistView extends React.Component {
 
   handleInputChange = event => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
@@ -50,14 +51,27 @@ class JournalistView extends React.Component {
       .allowance(this.state.userAddress, delegateAddress)
       .call();
     this.setState({ allowance });
+
+    //0x07c17b82318E6D072Bdfcc42dd83c9B9614894E3
   };
 
   approveTokenTransfer = async (sourceAddress, numTokens) => {
     const { userAddress } = this.state;
 
-    await this.props.drizzle.contracts.TokenMinter.methods
-      .approve(sourceAddress, numTokens)
-      .send({ from: userAddress });
+    this.setState({ loading: true });
+    toast.info('Processing change...', {
+      position: 'top-right',
+      autoClose: 10000,
+      transition: Flip,
+    });
+    try {
+      await this.props.drizzle.contracts.TokenMinter.methods
+        .approve(sourceAddress, numTokens)
+        .send({ from: userAddress });
+    } catch (error) {
+      this.setState({ errorMessage: error.message });
+      toast.dismiss();
+    }
   };
 
   render() {
@@ -66,7 +80,7 @@ class JournalistView extends React.Component {
       delegateAddress,
       userAddress,
       tokenBalance,
-      tokenSymbol
+      tokenSymbol,
     } = this.state;
     return (
       <div className="journalist-view">
@@ -87,7 +101,7 @@ class JournalistView extends React.Component {
                 onClick={() => {
                   this.textArea.select();
                   console.log(this.textArea);
-                  document.execCommand("copy");
+                  document.execCommand('copy');
                 }}
               >
                 <Icon name="clipboard" />
@@ -99,7 +113,7 @@ class JournalistView extends React.Component {
             </h2>
             <TokenForm
               minter={this.approveTokenTransfer}
-              formName={"approve"}
+              formName={'approve'}
             />
             <Form onSubmit={() => this.allowance(delegateAddress)}>
               <Form.Input
