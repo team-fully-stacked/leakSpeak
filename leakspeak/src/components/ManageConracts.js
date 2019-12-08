@@ -1,41 +1,32 @@
 import React from "react";
-import {
-  Input,
-  Item,
-  Modal,
-  Button,
-  Label,
-  Icon,
-  Header,
-  Image,
-  Form,
-  Divider,
-  TextArea
-} from "semantic-ui-react";
-import CreateContract from "./CreateContract"
+import { Button, Icon, Item, Label } from "semantic-ui-react";
+import CreateContract from "./CreateContract";
 
 class ManageContracts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        contracts: [{
-            header: 'Looking for infromation on car crash',
-            company: 'BBC',
-            ammount: '$200',
-            location: ' New York, NY',
-            imageUrl: '',
-            description: 'Last night there was a suspicious car crash etc.. etc.. etc..',
-            label:['Image', 'Car Cash', 'Local News'],
-            live: false,
-            completed: false
-        }]
+      contracts: [{
+        header: 'Looking for infromation on car crash',
+        company: 'BBC',
+        ammount: '$200',
+        location: ' New York, NY',
+        imageUrl: '',
+        description: 'Last night there was a suspicious car crash etc.. etc.. etc..',
+        label: ['Image', 'Car Cash', 'Local News'],
+        live: false,
+        completed: false,
+        ipfsHash: ''
+      }]
     };
   }
 
   render() {
-    const contracts = this.state.contracts.filter(contract => {
-      return contract.completed === false;
-    });
+    // const contracts = this.state.contracts.filter(contract => {
+    //   return contract.completed === false;
+    // });
+    const contracts = this.state.contracts;
+    console.log(">>>>>: ManageContracts -> render -> contracts", contracts)
 
     return (
       <div>
@@ -68,14 +59,14 @@ class ManageContracts extends React.Component {
                         floated="right"
                       >
                         {" "}
-                       Go Live <Icon name="edit" />
+                        Go Live <Icon name="edit" />
                       </Button>
                       <Button
                         color="orange"
                         floated="right"
                       >
                         {" "}
-                       Add Voter <Icon name="edit" />
+                        Add Voter <Icon name="edit" />
                       </Button>
                     </Item.Content>
                   </Item>
