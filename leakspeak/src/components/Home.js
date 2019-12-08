@@ -63,7 +63,6 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     const contracts = this.state.contracts.filter(contract => {
       return contract.completed === false;
     });

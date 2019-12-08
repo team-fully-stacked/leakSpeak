@@ -8,8 +8,6 @@ import {
   Button,
   Icon,
   Label,
-  Card,
-  Message
 } from "semantic-ui-react";
 import CreateContract from "./CreateContract";
 
@@ -81,7 +79,7 @@ class ManageContracts extends React.Component {
   };
 
   render() {
-    const { contracts, votes } = this.state;
+    const { contracts } = this.state;
     return (
       <div>
         <div className="search">

@@ -1,6 +1,6 @@
 import ipfsClient from 'ipfs-http-client';
 import React from 'react';
-import { TextArea, Form, Item, Modal, Button, Icon, Label, Grid, Image, Divider, Header, Input, Card, Message} from "semantic-ui-react";
+import { Button, Icon, Label, Divider, Header, Input, Card, Message} from "semantic-ui-react";
 
 const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: '5001', protocol: 'https' })
 
