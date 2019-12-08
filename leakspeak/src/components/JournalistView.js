@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Form, Button } from 'semantic-ui-react';
+import { Button, Card, Form } from 'semantic-ui-react';
 import TokenForm from './TokenForm';
 
 class JournalistView extends React.Component {
@@ -22,6 +22,8 @@ class JournalistView extends React.Component {
     const tokenSymbol = await this.props.drizzle.contracts.TokenMinter.methods
       .symbol()
       .call();
+    const quorum = await this.props.drizzle.contracts.ContractCreator.methods.quorum().call()
+    console.log(">>>>>: JournalistView -> getData -> quorum", quorum)
 
     return {
       userAddress,
