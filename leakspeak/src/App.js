@@ -27,7 +27,6 @@ export default () => (
       return (
         <div>
           <LandingPage drizzle={drizzle} drizzleState={drizzleState} />
-          <IPFS drizzle={drizzle} drizzleState={drizzleState} />
         </div>
       );
     }}

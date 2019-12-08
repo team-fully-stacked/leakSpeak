@@ -14,11 +14,59 @@ class Routes extends React.Component {
 
     return (
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route
+          exact
+          path="/"
+          render={props => {
+            return (
+              <Home
+                drizzle={drizzle}
+                drizzleState={drizzleState}
+                props={props}
+              />
+            );
+          }}
+        />
         <Route exact path="/org" component={Org} />
-        <Route exact path="/contracts" component={Home} />
-        <Route exact path="/journalist" component={ManageContracts} />
-        <Route exact path="/source" component={Home} />
+        <Route
+          exact
+          path="/contracts"
+          render={props => {
+            return (
+              <Home
+                drizzle={drizzle}
+                drizzleState={drizzleState}
+                props={props}
+              />
+            );
+          }}
+        />
+         <Route
+          exact
+          path="/source"
+          render={props => {
+            return (
+              <Home
+                drizzle={drizzle}
+                drizzleState={drizzleState}
+                props={props}
+              />
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/journalist"
+          render={props => {
+            return (
+              <ManageContracts
+                drizzle={drizzle}
+                drizzleState={drizzleState}
+                props={props}
+              />
+            );
+          }}
+        />
         <Route
           exact
           path="/organization"

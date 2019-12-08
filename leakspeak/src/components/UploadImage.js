@@ -4,14 +4,14 @@ import { TextArea, Form, Item, Modal, Button, Icon, Label, Grid, Image, Divider,
 
 const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: '5001', protocol: 'https' })
 
-class IPFS extends React.Component {
+class UploadImage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             currentAccount: '',
             currentFileIPFSHash: 'waiting...',
             ipfsHashArray: '',
-            message: 'no msg yet',
+            message: 'Nothing Uploaded...',
             addVoterAddress: '',
             isAlive: false,
             currentApprovals: 0,
@@ -24,6 +24,7 @@ class IPFS extends React.Component {
         this.setState({ currentAccount });
     };
 
+    fileInputRef = React.createRef();
 
 
     onUpload = (file) => {
@@ -83,86 +84,35 @@ class IPFS extends React.Component {
         // console.log(">>>>>: IPFS -> onChange -> addVoterAddress", this.state.addVoterAddress)
     }
 
-    // getIPFSHash = async () => {
-    //     const ipfsHash = await this.props.drizzleState.
-    // }
-
-    // getIPFSHashes = async () => {
-    //     // get all hashes for current address from blockchain
-    //     this.setState({
-    //         message: 'Getting IPFS hashes...'
-    //     })
-    //     const { currentAccount } = await this.getCurrentAccountBalAndBlockNum();
-    //     const rawipfsHashArray = await ipfsContract.methods.getEntry(currentAccount).call(); // no from property bc using metamask
-
-    //     const ipfsHashArray = rawipfsHashArray.map(hash => getMultihashFromContractResponse(hash))
-    //     console.log('get ipfsHashArray>>>>>', ipfsHashArray)
-    //     this.setState({
-    //         ipfsHashArray,
-    //         message: 'IPFS Hashes Retrieved.'
-    //     });
-    // }
-
     render() {
         console.log('>>>>>>', this.props)
         let hashResult;
         if (this.state.currentFileIPFSHash) hashResult = <a href={`https://ipfs.infura.io/ipfs/${this.state.currentFileIPFSHash}`}>{`https://ipfs.infura.io/ipfs/${this.state.currentFileIPFSHash}`}</a>
-        let color = 'red'
-        let message = 'Not Live'
-        if(this.state.isAlive) {
-            color ='green'
-            message='Live'
-        } else {
-            color = 'red'
-            message = 'Not Live'
-        }
+
         
         return (
-            <div style={{
-                marginTop: "30px"
-            }}>
-                <div style={{
-                    marginBottom: "30px"
-                }}>
-                <Divider >
-                    <Header as='h3'>
-                    Basic Information 
-                    </Header>
-                </Divider>
-                </div>
                 <div>
-                <Button basic color={color} horizontal size={'large'}>
-                    {message}
-                </Button>
-
-                <Label size={'large'} > <Icon name='users'/> {`${this.state.currentApprovals} Approval(s)`}</Label>
-
-                <div style={{
-                    margin: '10px'
-                }}>
-                    <Input onChange={(e) => this.onChange(e)}></Input>
-                    <Button color={'orange'} onClick={() => this.addVoter()}>Add Voter</Button>
-
-                </div>
-                <div style={{
-                    margin: '10px'
-                }}>
-                    {(!this.state.isAlive) ? <Button color={'green'} onClick={() => this.goLive()}>Activate Contract</Button> : ''}
-                    <Button color={'orange'} onClick={() => this.addApprovall()}>Add Approval</Button>
-                    <Button color={'orange'} >Withdraw</Button>
-                </div>
-                </div>
-
-                {/* <div>
-                    <input type="file" onChange={(event) => this.onUpload(event.target.files[0])} />
-                    <p>{this.state.message}</p>
-                    {hashResult}
-                </div> */}
-            </div >
+                    
+                
+            <Button
+            content="Choose File"
+            labelPosition="left"
+            icon="file"
+            onClick={() => this.fileInputRef.current.click()}
+            />
+          <input
+            ref={this.fileInputRef}
+            type="file"
+            hidden
+            onChange={(event) => this.onUpload(event.target.files[0])}
+          />
+          <Header as='h5'>{this.state.message}</Header>
+          <Header as='h5'>{hashResult}</Header>
+          </div>
         )
     }
 
 }
 
 
-export default IPFS;
+export default UploadImage;
