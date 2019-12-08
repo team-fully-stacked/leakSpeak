@@ -1,11 +1,7 @@
 import React from 'react';
 import { Button, Divider, Form, Header, Icon, Image, Input, Item, Label, Modal, TextArea } from 'semantic-ui-react';
 import './Home.css';
-
-
-
-
-
+import UploadImage from './UploadImage';
 
 class Home extends React.Component {
   constructor(props) {
@@ -284,17 +280,7 @@ class Home extends React.Component {
                               </p>
                                 <Form>
                                   <TextArea placeholder="Input your response..." />
-                                  <Button>
-                                    {' '}
-                                    <Icon name="camera" /> Upload Image/Video
-                                </Button>
-                                  <Button>
-                                    {' '}
-                                    <Icon name="file audio" /> Upload Audio File
-                                </Button>
-                                  <Button>
-                                    <Icon name="folder open" /> Upload Document
-                                </Button>
+                                 <UploadImage drizzle={this.props.drizzle} drizzleState={this.props.drizzleState} />
                                 </Form>
                               </Modal.Description>
                             </Modal.Content>
