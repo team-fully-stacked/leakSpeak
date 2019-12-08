@@ -6,7 +6,6 @@ class CreateContract extends React.Component {
     super(props);
     this.state = {
       question: '',
-      description: "",
       quorum: '',
       open: false,
       description: '',

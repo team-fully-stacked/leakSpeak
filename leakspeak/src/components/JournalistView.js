@@ -79,6 +79,7 @@ class JournalistView extends React.Component {
               ref={textarea => (this.textArea = textarea)}
               id="jAddr"
               value={userAddress}
+              readOnly={true}
               rows="1"
             />
             ,

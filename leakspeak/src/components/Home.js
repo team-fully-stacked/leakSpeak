@@ -97,9 +97,9 @@ class Home extends React.Component {
           <div className="home">
             <div className="all-contracts">
               <Item.Group divided>
-                {contracts.map(contract => {
+                {contracts.map((contract, idx) => {
                   return (
-                    <Item>
+                    <Item key ={idx}>
                       <Item.Image src={contract.imageUrl} />
                       <Item.Content>
                         <Item.Header>{contract.header} </Item.Header>
@@ -111,8 +111,8 @@ class Home extends React.Component {
                           {contract.description}
                         </Item.Description>
                         <Item.Extra>
-                          {contract.label.map(lab => {
-                            return <Label color="yellow">{lab}</Label>;
+                          {contract.label.map((lab,idx) => {
+                            return <Label key={idx} color="yellow">{lab}</Label>;
                           })}
                         </Item.Extra>
                         <Button
@@ -121,7 +121,7 @@ class Home extends React.Component {
                           floated="right"
                         >
                           {' '}
-                          Provide information .<Icon name="upload disk" />
+                          Provide information .<Icon name="disk" />
                         </Button>
                         <Modal open={this.state.isModal}>
                           <Modal.Header>

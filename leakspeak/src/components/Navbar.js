@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Image, Icon } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,7 +19,7 @@ const Navbar = props => {
     >
       <ToastContainer />
       <div style={{ height: "100px" }}>
-        <img src={logo} />
+        <img src={logo} alt="leakSpeak makes the world aware" />
       </div>
       <div
         className="navbar"
