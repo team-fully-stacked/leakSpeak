@@ -1,5 +1,14 @@
 import React from "react";
-import { TextArea, Form, Item, Modal, Button, Icon, Label } from "semantic-ui-react";
+import {
+  TextArea,
+  Form,
+  Item,
+  Modal,
+  Button,
+  Icon,
+  Label,
+  Card
+} from "semantic-ui-react";
 import CreateContract from "./CreateContract";
 
 class ManageContracts extends React.Component {
@@ -23,12 +32,15 @@ class ManageContracts extends React.Component {
           label: ["Image", "Car Cash", "Local News"],
           live: false,
           completed: false,
+          voted: false,
           voters: [
             0x1eb6139785f46de6fa1334ef724e2c1cd42f8495,
             0x1eb6139785f46de6fa1334ef724e2c1cd42f8495,
             0x1eb6139785f46de6fa1334ef724e2c1cd42f8495,
             0x1eb6139785f46de6fa1334ef724e2c1cd42f8495
-          ]
+          ],
+          Approvals: 1,
+          quorum:"2/3"
         },
         {
           header: "Looking for information regarding potential Oil Spill",
@@ -39,12 +51,15 @@ class ManageContracts extends React.Component {
           label: ["Image", "Oil Spill", "Global News", "BBC"],
           completed: false,
           live: true,
+          voted: true,
           voters: [
             0x1eb6139785f46de6fa1334ef724e2c1cd42f8495,
             0x1eb6139785f46de6fa1334ef724e2c1cd42f8495,
             0x1eb6139785f46de6fa1334ef724e2c1cd42f8495,
             0x1eb6139785f46de6fa1334ef724e2c1cd42f8495
-          ]
+          ],
+          Approvals: 1,
+          quorum:"2/3"
         }
       ]
     };
@@ -80,6 +95,7 @@ class ManageContracts extends React.Component {
                       <Item.Description>
                         {contract.description}
                       </Item.Description>
+
                       <Item.Extra>
                         {contract.label.map(lab => {
                           return <Label color="yellow">{lab}</Label>;
@@ -113,6 +129,25 @@ class ManageContracts extends React.Component {
                           </Button>
                         </div>
                       )}
+
+                      <Card>
+                        <Card.Header>
+                          Status:{" "}
+                          {contract.live
+                            ? contract.voted
+                              ? contract.completed
+                                ? "complete"
+                                : "Awaitng votes"
+                              : "Awaiting Votes"
+                            : "Not Live"}
+                        </Card.Header>
+                        <Card.Content>
+                          Approvals: {contract.Approvals}
+                          Quorum: {contract.quorum}
+                        </Card.Content>
+
+                        <Icon name="level up" floated="right" size="large" float="right"/>
+                      </Card>
                     </Item.Content>
                   </Item>
                 );
@@ -143,9 +178,7 @@ class ManageContracts extends React.Component {
                       tagEdit: false
                     });
                   }}
-                >
-                  Done
-                </Button>
+                > Done</Button>
               </Modal.Actions>
             </Modal>
           </div>
