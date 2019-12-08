@@ -8,10 +8,14 @@ import { Drizzle } from 'drizzle';
 import { DrizzleContext } from 'drizzle-react';
 import './App.css';
 import Migrations from './contracts/Migrations.json';
-import OpenHire from './contracts/OpenHire';
+import ContractCreator from './contracts/ContractCreator.json';
+import SafeMath from './contracts/SafeMath.json';
+import TokenMinter from './contracts/tokenMinter.json';
 import store from './middleware';
 
-const options = { contracts: [Migrations, OpenHire] };
+const options = {
+  contracts: [Migrations, ContractCreator, SafeMath, TokenMinter],
+};
 const drizzle = new Drizzle(options, store);
 
 ReactDOM.render(
@@ -19,7 +23,6 @@ ReactDOM.render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-    ,
   </DrizzleContext.Provider>,
 
   document.getElementById('root')
