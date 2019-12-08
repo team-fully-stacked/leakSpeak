@@ -1,6 +1,6 @@
 pragma solidity ^0.5.11;
 
-contract contractCreator {
+contract ContractCreator {
 
     address public token; // token address
 

@@ -1,7 +1,7 @@
 pragma solidity ^0.5.11;
 
 
-contract tokenMinter {
+contract TokenMinter {
     string public name = "";
     string public symbol = "";
     event Approval(address indexed tokenOwner, address indexed spender, uint tokens);

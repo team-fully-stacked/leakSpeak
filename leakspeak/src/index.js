@@ -9,12 +9,12 @@ import { DrizzleContext } from 'drizzle-react';
 import './App.css';
 import Migrations from './contracts/Migrations.json';
 import ContractCreator from './contracts/ContractCreator.json';
-import SafeMath from './contracts/SafeMath.json';
-import TokenMinter from './contracts/tokenMinter.json';
+// import SafeMath from './contracts/SafeMath.json';
+import TokenMinter from './contracts/TokenMinter.json';
 import store from './middleware';
 
 const options = {
-  contracts: [Migrations, ContractCreator, SafeMath, TokenMinter],
+  contracts: [Migrations, ContractCreator, TokenMinter],
 };
 const drizzle = new Drizzle(options, store);
 
