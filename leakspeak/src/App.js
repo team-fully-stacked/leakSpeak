@@ -1,11 +1,12 @@
-import React from 'react';
 import { DrizzleContext } from 'drizzle-react';
+import React from 'react';
 import { Loader } from 'semantic-ui-react';
-
 import './App.css';
-
 import Navbar from './components/Navbar';
+import IPFS from './IPFS';
 import Routes from './routes';
+
+
 
 export default () => (
   <DrizzleContext.Consumer>
@@ -29,6 +30,7 @@ export default () => (
         <div>
           <Navbar />
           <Routes drizzle={drizzle} drizzleState={drizzleState} />
+          <IPFS></IPFS>
         </div>
       );
     }}
