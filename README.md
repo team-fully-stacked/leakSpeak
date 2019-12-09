@@ -43,12 +43,12 @@ We used Ethereum to manage the data flow and IPFS to slice and distribute all up
 
 ## Screenshots
 
-<img width="900" alt="Screen Shot 2019-12-08 at 2 22 32 PM" src="https://user-images.githubusercontent.com/36509646/70443958-1f75f800-1a67-11ea-9078-1aaf64cb97bb.png">
-<img width="900" alt="Screen Shot 2019-12-09 at 9 36 54 AM" src="https://user-images.githubusercontent.com/36509646/70444280-a4611180-1a67-11ea-93c9-46f06f7d9ed2.png">
-<img width="900" alt="Screen Shot 2019-12-09 at 9 36 44 AM" src="https://user-images.githubusercontent.com/36509646/70444297-aa56f280-1a67-11ea-85a8-2b1a3418cdea.png">
-<img width="900" alt="Screen Shot 2019-12-09 at 9 36 27 AM" src="https://user-images.githubusercontent.com/36509646/70444303-adea7980-1a67-11ea-9fd2-f1541316bd79.png">
-<img width="900" alt="Screen Shot 2019-12-09 at 9 35 36 AM" src="https://user-images.githubusercontent.com/36509646/70444315-b17e0080-1a67-11ea-9a07-7201b356f583.png">
-<img width="900" alt="Screen Shot 2019-12-09 at 9 36 44 AM" src="https://user-images.githubusercontent.com/36509646/70444354-bc389580-1a67-11ea-9988-4c0fd7b61ce3.png">
+<img width="500" alt="Screen Shot 2019-12-08 at 2 22 32 PM" src="https://user-images.githubusercontent.com/36509646/70443958-1f75f800-1a67-11ea-9078-1aaf64cb97bb.png">
+<img width="500" alt="Screen Shot 2019-12-09 at 9 36 54 AM" src="https://user-images.githubusercontent.com/36509646/70444280-a4611180-1a67-11ea-93c9-46f06f7d9ed2.png">
+<img width="500" alt="Screen Shot 2019-12-09 at 9 36 44 AM" src="https://user-images.githubusercontent.com/36509646/70444297-aa56f280-1a67-11ea-85a8-2b1a3418cdea.png">
+<img width="500" alt="Screen Shot 2019-12-09 at 9 36 27 AM" src="https://user-images.githubusercontent.com/36509646/70444303-adea7980-1a67-11ea-9fd2-f1541316bd79.png">
+<img width="500" alt="Screen Shot 2019-12-09 at 9 35 36 AM" src="https://user-images.githubusercontent.com/36509646/70444315-b17e0080-1a67-11ea-9a07-7201b356f583.png">
+<img width="500" alt="Screen Shot 2019-12-09 at 9 36 44 AM" src="https://user-images.githubusercontent.com/36509646/70444354-bc389580-1a67-11ea-9988-4c0fd7b61ce3.png">
 
 
 
