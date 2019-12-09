@@ -6,7 +6,7 @@ Journalist platform leverging Ethereum technology that provides incentives for s
 
 Distributed Ledger Technology has the potential to greatly improve the efficiency and
 transparency of law and legal processes, while improving access to justice. The application aims to to advance environmental, economic, or social justice through the
-use of blockchain technology to provide a streamline process for global issues to be easily communicated.
+use of blockchain technology to provide a streamline process for global issues to be easily communicated. LeakSpeak allows journalists to anonymously reward their sources for their information and protects information from censorship by hosting the data on a non-custodial, decentralized network. In the era of fake news, leakSpeak is a way to get on the ground information and to prevent the rewriting of history.
 
 ## :shopping_cart: Functionality
 
