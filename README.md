@@ -1,6 +1,6 @@
 #  Leak Speak
 
-Journalist platform leverging Ethereum technology that provides incentives for sources to convey breaking news!
+1st place overall at Microsoft's Gotham DLT Hackaton and 1st place for Brooklyn Law Incubator & Policy Clinic challenge. LeakSpeak is a journalist platform leverging Ethereum technology that provides incentives for sources to convey breaking news!
 
 ## :nerd_face: Motivation
 
