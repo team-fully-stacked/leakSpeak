@@ -36,10 +36,10 @@ We used Ethereum to manage the data flow and IPFS to slice and distribute all up
 
 ## :writing_hand: Authors
 
-* Eric Loucks
+* Eric Loucks - [EricBot89](https://github.com/EricBot89)
 * Andrew O’Grady - [aogrady3](https://github.com/aogrady3)
-* Alex Mok
-* Michael Ng
+* Alex Mok - [MistuhMok](https://github.com/MistuhMok)
+* Michael Ng - [xMNG](https://github.com/xMNG)
 
 ## Screenshots
 
@@ -51,6 +51,39 @@ We used Ethereum to manage the data flow and IPFS to slice and distribute all up
 <img width="500" alt="Screen Shot 2019-12-09 at 9 36 44 AM" src="https://user-images.githubusercontent.com/36509646/70444354-bc389580-1a67-11ea-9988-4c0fd7b61ce3.png">
 
 
+## Installation
+
+Note: this configuration process is long and fraught with errors due to the nature of Ethereum development! Please reach out if you encounter issues, we may have encountered and resolved the same ones during our development process.
+
+Ensure that the local Node version is 10.16.10 (the truffle library has dependecy issues with Node v12+)
+
+Navigate to the root directory
+
+npm i in root directory
+
+Navigate to the leakSpeak directory
+
+npm i in the leakSpeak directory
+
+Download and open up Ganache (https://www.trufflesuite.com/ganache). This is our local test Ethereum network that we will be deploying our smart contract on.
+
+In Ganache:
+
+create a new workspace
+under the server tab, change the port number to 8545 (this is our local testnet port)
+under the accounts & keys tab, copy the mnemonic key (this is how we generate our ethereum address)
+save
+Create a .secret file in your root directory and paste your mnemonic key from step 7 (this allows the code to deploy our contract with the same address)
+
+In the root directory, compile and migrate the contracts using command truffle migrate (If you do not have truffle installed globally use "./node_modules/.bin/truffle migrate") to deploy the contracts to the local network.
+
+Download Metamask extension for your browser and log in to Metamask (https://metamask.io/) This is an Ethereum address management tool and our interface with the Ethereum blockchain
+
+Enter the Ganache seed account (12 word mnemonic from step 7) into metamask.
+
+Change metamask network to localhost 8545. Our test network is deployed to port 8545.
+
+Navigate to the openhire directory and npm start to run our front end to interact with the blockchain
 
 ## Demo 
 
